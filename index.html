@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff8f6">
+  <meta name="description" content="A little love, a soft hug, and a reminder that you matter.">
+  <title>A Little Hug For You</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #503541;
+      --muted: #866d76;
+      --rose: #d96f8d;
+      --rose-deep: #bd5473;
+      --rose-pale: #fbe5e9;
+      --cream: #fff8f6;
+      --lavender: #f0eafa;
+      --line: rgba(128, 77, 96, .12);
+      --shadow: 0 22px 60px rgba(130, 77, 94, .10);
+      font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      color: var(--ink);
+      background:
+        radial-gradient(ellipse at 2% 9%, rgba(248, 221, 230, .68), transparent 28rem),
+        radial-gradient(ellipse at 98% 30%, rgba(234, 226, 248, .64), transparent 30rem),
+        var(--cream);
+      line-height: 1.65;
+    }
+    button { font: inherit; }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .topbar { padding: 22px 0; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -.03em; }
+    .brand-icon { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 14px; background: white; box-shadow: 0 7px 20px rgba(130,77,94,.09); color: var(--rose); }
+    .brand-icon svg { width: 21px; height: 21px; }
+    .nav-note { color: var(--muted); font-size: .88rem; }
+    .hero { display: grid; grid-template-columns: 1.02fr .98fr; align-items: center; gap: clamp(28px, 5vw, 70px); padding: 34px 0 76px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 16px; color: var(--rose-deep); font-size: .76rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 22px; height: 1px; background: currentColor; }
+    h1, h2, p { margin-top: 0; }
+    h1, h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 500; letter-spacing: -.045em; }
+    h1 { max-width: 590px; margin-bottom: 20px; font-size: clamp(2.75rem, 5.3vw, 4.9rem); line-height: 1.04; }
+    h1 em { color: var(--rose-deep); font-weight: 500; }
+    .hero-copy { max-width: 510px; color: var(--muted); font-size: clamp(1rem, 1.4vw, 1.12rem); }
+    .hero-copy strong { color: var(--ink); font-weight: 700; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 28px; }
+    .btn { min-height: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 20px; border: 1px solid transparent; border-radius: 999px; cursor: pointer; text-decoration: none; font-weight: 800; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; -webkit-tap-highlight-color: transparent; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:focus-visible, .choice:focus-visible, .dialog-close:focus-visible { outline: 3px solid #b95b79; outline-offset: 3px; }
+    .btn-primary { color: white; background: linear-gradient(135deg, #dc7893, #c95e7c); box-shadow: 0 12px 24px rgba(201,94,124,.22); }
+    .btn-primary:hover { box-shadow: 0 15px 28px rgba(201,94,124,.30); }
+    .btn-secondary { color: var(--ink); background: rgba(255,255,255,.72); border-color: var(--line); }
+    .btn svg { width: 19px; height: 19px; flex: 0 0 auto; }
+    .tiny-note { margin: 16px 0 0; color: #9a828a; font-size: .84rem; }
+    .art-card { position: relative; min-height: 430px; display: grid; place-items: center; overflow: hidden; border: 1px solid rgba(255,255,255,.85); border-radius: 42% 42% 34px 34px / 36% 36% 34px 34px; background: linear-gradient(150deg, #fae8ec, #f2eafa 72%, #f8eced); box-shadow: var(--shadow); }
+    .art-card::before, .art-card::after { content: ""; position: absolute; border-radius: 50%; background: rgba(255,255,255,.36); }
+    .art-card::before { width: 240px; height: 240px; top: -95px; right: -50px; }
+    .art-card::after { width: 175px; height: 175px; left: -75px; bottom: -55px; }
+    .hero-art { position: relative; z-index: 1; width: min(100%, 520px); height: auto; padding: 12px; overflow: visible; }
+    .float { animation: bob 4s ease-in-out infinite; transform-origin: center; }
+    .float-slow { animation: bob 5s ease-in-out -1.5s infinite; transform-origin: center; }
+    .twinkle { animation: twinkle 2.8s ease-in-out infinite; transform-origin: center; }
+    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+    @keyframes twinkle { 0%,100% { opacity: .45; transform: scale(.9); } 50% { opacity: 1; transform: scale(1.12); } }
+    .section { padding: 54px 0; }
+    .section-head { max-width: 650px; margin: 0 auto 28px; text-align: center; }
+    .section-head .eyebrow { justify-content: center; }
+    h2 { margin-bottom: 12px; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; }
+    .section-head p { margin-bottom: 0; color: var(--muted); }
+    .letter-card { position: relative; max-width: 820px; margin: 0 auto; padding: clamp(26px, 5vw, 52px); border: 1px solid var(--line); border-radius: 28px; background: rgba(255,255,255,.75); box-shadow: var(--shadow); }
+    .letter-card::before { content: "“"; position: absolute; top: 7px; left: 22px; color: #f4c8d3; font-family: Georgia,serif; font-size: 6rem; line-height: 1; }
+    .letter-card p { position: relative; margin-bottom: 15px; color: #705b64; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.08rem, 2vw, 1.28rem); line-height: 1.8; }
+    .letter-card p:last-child { margin-bottom: 0; }
+    .comfort { display: grid; grid-template-columns: .85fr 1.15fr; gap: 30px; align-items: center; max-width: 900px; margin: 0 auto; padding: clamp(25px, 4vw, 42px); border-radius: 30px; background: #f4edf8; }
+    .comfort-art { display: grid; place-items: center; min-height: 220px; }
+    .comfort-art svg { width: min(100%, 260px); height: auto; }
+    .comfort h2 { font-size: clamp(1.9rem, 3vw, 2.55rem); }
+    .comfort-copy { color: var(--muted); }
+    .choices { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
+    .choice { min-height: 42px; padding: 9px 14px; border: 1px solid rgba(120,77,100,.16); border-radius: 999px; color: #6b5360; background: rgba(255,255,255,.68); cursor: pointer; font-size: .9rem; font-weight: 700; transition: .18s ease; }
+    .choice:hover, .choice[aria-pressed="true"] { color: #923f5b; border-color: #e8b8c6; background: white; box-shadow: 0 6px 16px rgba(130,77,94,.08); }
+    .choice-response { min-height: 3.3em; margin: 15px 0 0; color: #765d68; font-size: .94rem; }
+    .ending { position: relative; overflow: hidden; margin: 35px auto 68px; padding: clamp(36px, 7vw, 72px) clamp(24px, 7vw, 80px); border-radius: 34px; color: white; text-align: center; background: linear-gradient(140deg, #d77994, #c96886 56%, #b96f93); box-shadow: 0 22px 55px rgba(175,83,115,.20); }
+    .ending::before, .ending::after { content: "♡"; position: absolute; color: rgba(255,255,255,.16); font-family: Georgia,serif; font-size: 9rem; line-height: 1; }
+    .ending::before { top: -18px; left: 3%; transform: rotate(-18deg); }
+    .ending::after { right: 3%; bottom: -52px; transform: rotate(14deg); }
+    .ending-inner { position: relative; z-index: 1; max-width: 690px; margin: auto; }
+    .ending .eyebrow { justify-content: center; color: rgba(255,255,255,.85); }
+    .ending h2 { margin-bottom: 17px; }
+    .ending p { margin-bottom: 12px; color: rgba(255,255,255,.91); font-size: 1.04rem; }
+    .ending .love { display: inline-block; margin: 18px 0 0; font-family: Georgia,serif; font-size: clamp(1.65rem, 4vw, 2.35rem); font-weight: 700; }
+    .ending .love span { display: inline-block; color: #ffe1e8; animation: heartbeat 1.7s ease-in-out infinite; }
+    @keyframes heartbeat { 0%,100% { transform: scale(1); } 12% { transform: scale(1.2); } 24% { transform: scale(1); } 36% { transform: scale(1.12); } }
+    footer { padding: 0 0 28px; color: #9a828a; text-align: center; font-size: .83rem; }
+    footer span { color: var(--rose); }
+    dialog { width: min(440px, calc(100% - 28px)); padding: 0; overflow: visible; border: 1px solid rgba(255,255,255,.9); border-radius: 28px; color: var(--ink); background: var(--cream); box-shadow: 0 30px 90px rgba(58,32,44,.28); }
+    dialog::backdrop { background: rgba(72,46,59,.42); backdrop-filter: blur(5px); }
+    .dialog-inner { position: relative; padding: 30px 28px 32px; text-align: center; }
+    .dialog-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; display: grid; place-items: center; border: 0; border-radius: 50%; color: #765b66; background: #f7e8ec; cursor: pointer; font-size: 1.3rem; }
+    .hug-illustration { display: block; width: 190px; height: 170px; margin: 8px auto 5px; }
+    .dialog-inner h2 { margin-bottom: 8px; font-size: 2rem; }
+    .dialog-inner p { margin: 0 auto; max-width: 330px; color: var(--muted); }
+    .hug-heart { animation: heartbeat 1.5s ease-in-out infinite; transform-origin: center; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 32px, 560px); }
+      .topbar { padding: 14px 0; }
+      .nav-note { font-size: .78rem; }
+      .hero { grid-template-columns: 1fr; gap: 26px; padding: 30px 0 48px; }
+      .hero-text { text-align: center; }
+      .hero-text .eyebrow { justify-content: center; }
+      h1 { margin-inline: auto; font-size: clamp(2.65rem, 12vw, 4rem); }
+      .hero-copy { margin-inline: auto; }
+      .actions { justify-content: center; }
+      .art-card { width: min(100%, 440px); min-height: 0; aspect-ratio: 1 / .88; margin-inline: auto; border-radius: 34px; }
+      .hero-art { width: min(100%, 400px); }
+      .section { padding: 35px 0; }
+      .comfort { grid-template-columns: 1fr; gap: 4px; text-align: center; }
+      .comfort-art { min-height: 155px; }
+      .comfort-art svg { width: 180px; }
+      .choices { justify-content: center; }
+      .choice { flex: 1 1 145px; }
+      .ending { margin: 22px auto 46px; border-radius: 28px; }
+    }
+    @media (max-width: 420px) {
+      .wrap { width: calc(100% - 24px); }
+      .nav-note { max-width: 120px; text-align: right; line-height: 1.3; }
+      .hero { padding-top: 23px; }
+      .hero .actions { display: grid; grid-template-columns: 1fr; width: min(100%, 320px); margin-inline: auto; }
+      .hero .btn { width: 100%; }
+      .art-card { aspect-ratio: 1 / .94; }
+      .letter-card { border-radius: 23px; }
+      .comfort { border-radius: 24px; }
+      .choice { flex-basis: 100%; }
+      .ending { padding-inline: 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <div class="brand">
+        <span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.5-7.5-10.2A4.3 4.3 0 0 1 12 7.1a4.3 4.3 0 0 1 7.5 2.7C19.5 15.5 12 20 12 20Z" fill="currentColor"/><path d="M8.5 10.5c.8-1.3 1.8-1.7 2.7-1.7" stroke="white" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+        <span>Aap ke naam</span>
+      </div>
+      <span class="nav-note">Aik chhota sa pyaar bhara paighaam</span>
+    </div>
+  </header>
+  <main>
+    <section class="wrap hero" aria-labelledby="hero-title">
+      <div class="hero-text">
+        <p class="eyebrow">A little corner of comfort</p>
+        <h1 id="hero-title">Meri pyari dost, aap <em>bohat khaas</em> hain.</h1>
+        <p class="hero-copy">Aap ko abhi jawab dene ki zaroorat nahi. Jab aap ka dil chahe, main aap ki baat <strong>pyaar aur sukoon se</strong> sunne ke liye yahan hoon.</p>
+        <div class="actions">
+          <button class="btn btn-primary" id="hugButton" type="button">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20s-7-4.3-7-9.7A4.1 4.1 0 0 1 12 7.5a4.1 4.1 0 0 1 7 2.8C19 15.7 12 20 12 20Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 12.5c.8 1.5 2 2.3 4 2.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+            Teddy se aik hug lein
+          </button>
+          <a class="btn btn-secondary" href="#dil-ki-baat">Dil ki baat parhein</a>
+        </div>
+        <p class="tiny-note">Aap ka waqt, aap ki marzi. Koi jaldi nahi. ♡</p>
+      </div>
+      <div class="art-card" aria-label="Pink teddy bear aur do pyari cats ki illustration">
+        <svg class="hero-art" viewBox="0 0 520 460" role="img" aria-labelledby="artTitle artDesc">
+          <title id="artTitle">Aik pyaara teddy aur us ki cat dost</title>
+          <desc id="artDesc">Gulabi teddy bear ke saath do chhoti cats, dil aur sitaray.</desc>
+          <ellipse cx="266" cy="414" rx="174" ry="21" fill="#d7bed3" opacity=".38"/>
+          <g class="twinkle" fill="#fff9fb"><path d="m98 113 5 14 14 5-14 5-5 14-5-14-14-5 14-5z"/><path d="m414 105 4 11 11 4-11 4-4 11-4-11-11-4 11-4z"/></g>
+          <g class="twinkle" fill="#e99ab0"><path d="m131 240 3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/><path d="m395 210 3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/></g>
+          <g class="float-slow" transform="translate(54 240)">
+            <path d="M49 91c-25 0-43-16-43-39 0-19 13-34 32-37 8-1 18 2 24 7 16 12 22 28 19 44-3 16-16 25-32 25Z" fill="#f5f0f5"/>
+            <path d="M14 38 17 3l27 20M48 22 75 2l-2 38" fill="#f5f0f5" stroke="#f5f0f5" stroke-width="7" stroke-linejoin="round"/>
+            <path d="m22 27 1-14 12 10m22-2 12-10-1 16" fill="#f4bdcb"/>
+            <ellipse cx="37" cy="54" rx="3" ry="4" fill="#664c57"/><ellipse cx="63" cy="54" rx="3" ry="4" fill="#664c57"/>
+            <path d="M46 62q4 5 8 0m-4 0v4m0 0q-4 5-8 0m8 0q4 5 8 0" fill="none" stroke="#b8687d" stroke-width="1.8" stroke-linecap="round"/>
+            <ellipse cx="27" cy="62" rx="6" ry="3.5" fill="#f2c2ce"/><ellipse cx="73" cy="62" rx="6" ry="3.5" fill="#f2c2ce"/>
+            <ellipse cx="49" cy="101" rx="27" ry="19" fill="#f8f3f7"/><path d="M29 87q-18 6-17 23m57-23q18 6 17 23" fill="none" stroke="#f8f3f7" stroke-width="13" stroke-linecap="round"/>
+            <ellipse cx="34" cy="112" rx="14" ry="8" fill="#f8f3f7"/><ellipse cx="64" cy="112" rx="14" ry="8" fill="#f8f3f7"/>
+          </g>
+          <g class="float" transform="translate(157 62)">
+            <circle cx="102" cy="78" r="41" fill="#e99aaf"/><circle cx="174" cy="78" r="41" fill="#e99aaf"/>
+            <circle cx="102" cy="78" r="22" fill="#f4c0cc"/><circle cx="174" cy="78" r="22" fill="#f4c0cc"/>
+            <ellipse cx="138" cy="130" rx="84" ry="77" fill="#ec9eb3"/>
+            <ellipse cx="138" cy="316" rx="105" ry="111" fill="#df819c"/>
+            <ellipse cx="138" cy="321" rx="61" ry="68" fill="#f4c4ce"/>
+            <path d="M70 260Q28 222 19 258q-8 34 42 59m145-57q41-39 52-2 8 34-42 59" fill="none" stroke="#df819c" stroke-width="40" stroke-linecap="round"/>
+            <ellipse cx="80" cy="408" rx="42" ry="25" fill="#cf6e8a"/><ellipse cx="196" cy="408" rx="42" ry="25" fill="#cf6e8a"/>
+            <ellipse cx="114" cy="127" rx="5.5" ry="7" fill="#684754"/><ellipse cx="162" cy="127" rx="5.5" ry="7" fill="#684754"/>
+            <ellipse cx="138" cy="147" rx="19" ry="15" fill="#f8e6e8"/><path d="m133 143 5-4 5 4-5 6z" fill="#9d5266"/><path d="M138 149v5m0 0q-7 8-13 0m13 0q7 8 13 0" fill="none" stroke="#9d5266" stroke-width="2.4" stroke-linecap="round"/>
+            <ellipse cx="104" cy="151" rx="11" ry="6" fill="#f5b5c3"/><ellipse cx="172" cy="151" rx="11" ry="6" fill="#f5b5c3"/>
+            <path d="M110 220q28 18 56 0" fill="none" stroke="#c45d79" stroke-width="4" stroke-linecap="round"/><path d="m138 226 10 12-10 12-10-12z" fill="#fff0f3"/><circle cx="138" cy="237" r="3" fill="#d36d89"/>
+          </g>
+          <g class="float-slow" transform="translate(363 280)">
+            <path d="M42 78c-22 0-37-14-37-34 0-17 12-29 28-31 8-1 16 1 22 6 14 10 19 24 17 38-3 14-14 21-30 21Z" fill="#fff4e8"/>
+            <path d="M12 32 14 3l23 17M44 19 67 2l-2 33" fill="#fff4e8" stroke="#fff4e8" stroke-width="6" stroke-linejoin="round"/>
+            <path d="m20 24 1-12 11 9m20-3 10-9-1 14" fill="#efb8b1"/>
+            <ellipse cx="31" cy="47" rx="2.8" ry="3.5" fill="#634c4d"/><ellipse cx="54" cy="47" rx="2.8" ry="3.5" fill="#634c4d"/><path d="m40 54 3-2 3 2-3 3zM43 57v3m0 0q-4 4-7 0m7 0q4 4 7 0" fill="none" stroke="#b87476" stroke-width="1.7" stroke-linecap="round"/>
+            <ellipse cx="24" cy="55" rx="5" ry="3" fill="#f5c5c4"/><ellipse cx="61" cy="55" rx="5" ry="3" fill="#f5c5c4"/>
+            <ellipse cx="42" cy="87" rx="25" ry="20" fill="#fff4e8"/><path d="M25 82q-18 6-15 20m49-20q18 6 15 20" fill="none" stroke="#fff4e8" stroke-width="12" stroke-linecap="round"/><ellipse cx="29" cy="101" rx="13" ry="7" fill="#fff4e8"/><ellipse cx="55" cy="101" rx="13" ry="7" fill="#fff4e8"/>
+          </g>
+          <g class="twinkle" transform="translate(365 130)"><path d="M0 18c0-9 7-16 16-16 6 0 10 3 13 7 3-4 7-7 13-7 9 0 16 7 16 16 0 15-29 34-29 34S0 33 0 18Z" fill="#e58ca5" opacity=".78"/></g>
+        </svg>
+      </div>
+    </section>
+    <section class="wrap section" id="dil-ki-baat" aria-labelledby="letter-title">
+      <div class="section-head">
+        <p class="eyebrow">Aik dil ki baat</p>
+        <h2 id="letter-title">Aap ko kuch yaad dilana tha</h2>
+        <p>Yeh chhota sa paighaam sirf aap ke liye hai.</p>
+      </div>
+      <div class="letter-card">
+        <p>Aap bohat qeemti hain—sirf kisi ke liye nahi, apne aap ke liye bhi. Aap ko har waqt mazboot banne ki zaroorat nahi.</p>
+        <p>Jab bhi aap ka dil kare, main pyaar aur sabr se aap ki baat sununga. Aap jitna chahein, utna hi share karein. Aap ki feelings aur aap ka sukoon mere liye ahm hain.</p>
+        <p>Aap ko izzat, narmi aur khayal milna chahiye. Main apni taraf se hamesha ehsaas ke saath aap ka saath dene ki koshish karunga.</p>
+      </div>
+    </section>
+    <section class="wrap section" aria-labelledby="comfort-title">
+      <div class="comfort">
+        <div class="comfort-art" aria-hidden="true">
+          <svg viewBox="0 0 250 220">
+            <ellipse cx="125" cy="201" rx="82" ry="10" fill="#d8c5dc" opacity=".5"/>
+            <circle cx="92" cy="59" r="27" fill="#e99aaf"/><circle cx="158" cy="59" r="27" fill="#e99aaf"/><circle cx="92" cy="59" r="14" fill="#f4c0cc"/><circle cx="158" cy="59" r="14" fill="#f4c0cc"/>
+            <ellipse cx="125" cy="91" rx="59" ry="54" fill="#ec9eb3"/><ellipse cx="125" cy="158" rx="68" ry="61" fill="#df819c"/><ellipse cx="125" cy="159" rx="39" ry="39" fill="#f4c4ce"/>
+            <path d="M79 145Q51 122 46 147q-4 24 29 36m100-38q28-24 34 1 4 24-29 37" fill="none" stroke="#df819c" stroke-width="24" stroke-linecap="round"/>
+            <ellipse cx="108" cy="91" rx="4" ry="5" fill="#684754"/><ellipse cx="142" cy="91" rx="4" ry="5" fill="#684754"/><ellipse cx="125" cy="105" rx="14" ry="11" fill="#f8e6e8"/><path d="m121 103 4-3 4 3-4 4z" fill="#9d5266"/><path d="M125 107v4m0 0q-5 5-9 0m9 0q5 5 9 0" fill="none" stroke="#9d5266" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="m185 47 7 10 12 2-9 8 2 12-12-6-11 6 2-12-9-8 12-2z" fill="#fff" opacity=".8"/>
+          </svg>
+        </div>
+        <div>
+          <p class="eyebrow">Aap ki marzi, aap ka waqt</p>
+          <h2 id="comfort-title">Aaj aap ko kis cheez ki zaroorat hai?</h2>
+          <p class="comfort-copy">Agar chahein, in mein se aik chunein. Yeh bas aik pyaara sa reminder hai—koi jawab bhejne ki zaroorat nahi.</p>
+          <div class="choices" role="group" aria-label="Aaj aap ko kis cheez ki zaroorat hai?">
+            <button class="choice" type="button" aria-pressed="false" data-message="Main aap ki baat bina kisi faislay ke sununga. Aap jitna chahein, utna hi share karein.">Bas meri baat sunein</button>
+            <button class="choice" type="button" aria-pressed="false" data-message="Bilkul. Aap ka waqt aap ka hai. Jab aap baat karna chahein, main yahin hoon.">Thori si space</button>
+            <button class="choice" type="button" aria-pressed="false" data-message="Main aap ke saath hoon— aap ki apni pace par, bina kisi pressure ke.">Bas saath chahiye</button>
+          </div>
+          <p class="choice-response" id="choiceResponse" aria-live="polite">Aap jo chunein, us ki izzat hogi. ♡</p>
+        </div>
+      </div>
+    </section>
+    <section class="wrap ending" aria-labelledby="ending-title">
+      <div class="ending-inner">
+        <p class="eyebrow">Aap ke liye, dil se</p>
+        <h2 id="ending-title">Aap mere dil ke bohat qareeb hain.</h2>
+        <p>Aap ki muskurahat meri duniya ko roshan kar deti hai. Main chahta hoon ke aap hamesha yaad rakhein ke aap bohat khaas, bohat qeemti aur bohat pyaari hain.</p>
+        <p>Aap ki feelings, aap ka sukoon aur aap ki khushi ahm hain. Aap ke saath bitaya har lamha mere liye khoobsurat hai, aur main aap se bohat, bohat pyaar karta hoon.</p>
+        <div class="love">I love you <span aria-hidden="true">♥</span></div>
+        <p style="margin: 6px 0 0; font-family: Georgia,serif; font-size: 1.12rem;">meri pyari dost</p>
+      </div>
+    </section>
+  </main>
+  <footer>Aik virtual hug aur bohat saara pyaar <span aria-hidden="true">♥</span></footer>
+  <dialog id="hugDialog" aria-labelledby="hugTitle" aria-describedby="hugText">
+    <div class="dialog-inner">
+      <button class="dialog-close" id="closeDialog" type="button" aria-label="Paighaam band karein">×</button>
+      <svg class="hug-illustration" viewBox="0 0 200 175" role="img" aria-label="Khulay bazuon wala pink teddy bear aur aik chhoti cat">
+        <ellipse cx="100" cy="164" rx="72" ry="8" fill="#e8d6df"/>
+        <circle cx="72" cy="41" r="24" fill="#e99aaf"/><circle cx="128" cy="41" r="24" fill="#e99aaf"/><circle cx="72" cy="41" r="12" fill="#f4c0cc"/><circle cx="128" cy="41" r="12" fill="#f4c0cc"/>
+        <ellipse cx="100" cy="70" rx="45" ry="40" fill="#ec9eb3"/><ellipse cx="100" cy="132" rx="53" ry="39" fill="#df819c"/><ellipse cx="100" cy="131" rx="31" ry="24" fill="#f4c4ce"/>
+        <path d="M61 104Q27 79 20 99q-6 20 28 32m91-27q34-25 41-5 6 20-28 32" fill="none" stroke="#df819c" stroke-width="22" stroke-linecap="round"/>
+        <ellipse cx="86" cy="70" rx="4" ry="5" fill="#684754"/><ellipse cx="114" cy="70" rx="4" ry="5" fill="#684754"/><ellipse cx="100" cy="82" rx="13" ry="10" fill="#f8e6e8"/><path d="m96 80 4-3 4 3-4 4z" fill="#9d5266"/><path d="M100 84v4m0 0q-5 5-9 0m9 0q5 5 9 0" fill="none" stroke="#9d5266" stroke-width="1.7" stroke-linecap="round"/>
+        <path class="hug-heart" d="M139 27c0-7 5-12 12-12 4 0 8 2 10 6 2-4 6-6 10-6 7 0 12 5 12 12 0 11-22 25-22 25s-22-14-22-25Z" fill="#da6e8d"/>
+        <g transform="translate(7 116) scale(.43)"><path d="M20 51 22 4l35 29M58 32 93 4l-2 47" fill="#fff4e8" stroke="#fff4e8" stroke-width="10" stroke-linejoin="round"/><ellipse cx="57" cy="77" rx="46" ry="34" fill="#fff4e8"/><ellipse cx="43" cy="75" rx="3" ry="4" fill="#634c4d"/><ellipse cx="70" cy="75" rx="3" ry="4" fill="#634c4d"/><path d="m53 85 4-3 4 3-4 4z" fill="#b87476"/></g>
+      </svg>
+      <h2 id="hugTitle">Yeh hug aap ke naam ♡</h2>
+      <p id="hugText">Kaash main abhi aap ko aik pur-sukoon sa hug de pata. InshaAllah, aik din aap ko aisay galay lagaunga ke aap ke dil ke saare gham door ho jaayen.</p>
+    </div>
+  </dialog>
+  <script>
+    const hugDialog = document.getElementById('hugDialog');
+    const hugButton = document.getElementById('hugButton');
+    const closeDialog = document.getElementById('closeDialog');
+    hugButton.addEventListener('click', () => {
+      if (typeof hugDialog.showModal === 'function') hugDialog.showModal();
+      else hugDialog.setAttribute('open', '');
+    });
+    closeDialog.addEventListener('click', () => hugDialog.close ? hugDialog.close() : hugDialog.removeAttribute('open'));
+    hugDialog.addEventListener('click', (event) => {
+      if (event.target === hugDialog) hugDialog.close ? hugDialog.close() : hugDialog.removeAttribute('open');
+    });
+    document.querySelectorAll('.choice').forEach((button) => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('.choice').forEach((item) => item.setAttribute('aria-pressed', 'false'));
+        button.setAttribute('aria-pressed', 'true');
+        document.getElementById('choiceResponse').textContent = button.dataset.message;
+      });
+    });
+  </script>
+</body>
+</html>
