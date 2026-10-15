@@ -1,323 +1,85 @@
 <!doctype html>
-<html lang="en">
+<html lang="ur-Latn">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#fff8f6">
-  <meta name="description" content="A little love, a soft hug, and a reminder that you matter.">
-  <title>A Little Hug For You</title>
-  <style>
-    :root {
-      color-scheme: light;
-      --ink: #503541;
-      --muted: #866d76;
-      --rose: #d96f8d;
-      --rose-deep: #bd5473;
-      --rose-pale: #fbe5e9;
-      --cream: #fff8f6;
-      --lavender: #f0eafa;
-      --line: rgba(128, 77, 96, .12);
-      --shadow: 0 22px 60px rgba(130, 77, 94, .10);
-      font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
-      font-synthesis: none;
-      text-rendering: optimizeLegibility;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      min-width: 320px;
-      color: var(--ink);
-      background:
-        radial-gradient(ellipse at 2% 9%, rgba(248, 221, 230, .68), transparent 28rem),
-        radial-gradient(ellipse at 98% 30%, rgba(234, 226, 248, .64), transparent 30rem),
-        var(--cream);
-      line-height: 1.65;
-    }
-    button { font: inherit; }
-    a { color: inherit; }
-    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
-    .topbar { padding: 22px 0; }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
-    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -.03em; }
-    .brand-icon { display: grid; width: 38px; height: 38px; place-items: center; border-radius: 14px; background: white; box-shadow: 0 7px 20px rgba(130,77,94,.09); color: var(--rose); }
-    .brand-icon svg { width: 21px; height: 21px; }
-    .nav-note { color: var(--muted); font-size: .88rem; }
-    .hero { display: grid; grid-template-columns: 1.02fr .98fr; align-items: center; gap: clamp(28px, 5vw, 70px); padding: 34px 0 76px; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 8px; margin: 0 0 16px; color: var(--rose-deep); font-size: .76rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
-    .eyebrow::before { content: ""; width: 22px; height: 1px; background: currentColor; }
-    h1, h2, p { margin-top: 0; }
-    h1, h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 500; letter-spacing: -.045em; }
-    h1 { max-width: 590px; margin-bottom: 20px; font-size: clamp(2.75rem, 5.3vw, 4.9rem); line-height: 1.04; }
-    h1 em { color: var(--rose-deep); font-weight: 500; }
-    .hero-copy { max-width: 510px; color: var(--muted); font-size: clamp(1rem, 1.4vw, 1.12rem); }
-    .hero-copy strong { color: var(--ink); font-weight: 700; }
-    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 28px; }
-    .btn { min-height: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 12px 20px; border: 1px solid transparent; border-radius: 999px; cursor: pointer; text-decoration: none; font-weight: 800; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; -webkit-tap-highlight-color: transparent; }
-    .btn:hover { transform: translateY(-2px); }
-    .btn:focus-visible, .choice:focus-visible, .dialog-close:focus-visible { outline: 3px solid #b95b79; outline-offset: 3px; }
-    .btn-primary { color: white; background: linear-gradient(135deg, #dc7893, #c95e7c); box-shadow: 0 12px 24px rgba(201,94,124,.22); }
-    .btn-primary:hover { box-shadow: 0 15px 28px rgba(201,94,124,.30); }
-    .btn-secondary { color: var(--ink); background: rgba(255,255,255,.72); border-color: var(--line); }
-    .btn svg { width: 19px; height: 19px; flex: 0 0 auto; }
-    .tiny-note { margin: 16px 0 0; color: #9a828a; font-size: .84rem; }
-    .art-card { position: relative; min-height: 430px; display: grid; place-items: center; overflow: hidden; border: 1px solid rgba(255,255,255,.85); border-radius: 42% 42% 34px 34px / 36% 36% 34px 34px; background: linear-gradient(150deg, #fae8ec, #f2eafa 72%, #f8eced); box-shadow: var(--shadow); }
-    .art-card::before, .art-card::after { content: ""; position: absolute; border-radius: 50%; background: rgba(255,255,255,.36); }
-    .art-card::before { width: 240px; height: 240px; top: -95px; right: -50px; }
-    .art-card::after { width: 175px; height: 175px; left: -75px; bottom: -55px; }
-    .hero-art { position: relative; z-index: 1; width: min(100%, 520px); height: auto; padding: 12px; overflow: visible; }
-    .float { animation: bob 4s ease-in-out infinite; transform-origin: center; }
-    .float-slow { animation: bob 5s ease-in-out -1.5s infinite; transform-origin: center; }
-    .twinkle { animation: twinkle 2.8s ease-in-out infinite; transform-origin: center; }
-    @keyframes bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-    @keyframes twinkle { 0%,100% { opacity: .45; transform: scale(.9); } 50% { opacity: 1; transform: scale(1.12); } }
-    .section { padding: 54px 0; }
-    .section-head { max-width: 650px; margin: 0 auto 28px; text-align: center; }
-    .section-head .eyebrow { justify-content: center; }
-    h2 { margin-bottom: 12px; font-size: clamp(2rem, 4vw, 3rem); line-height: 1.12; }
-    .section-head p { margin-bottom: 0; color: var(--muted); }
-    .letter-card { position: relative; max-width: 820px; margin: 0 auto; padding: clamp(26px, 5vw, 52px); border: 1px solid var(--line); border-radius: 28px; background: rgba(255,255,255,.75); box-shadow: var(--shadow); }
-    .letter-card::before { content: "“"; position: absolute; top: 7px; left: 22px; color: #f4c8d3; font-family: Georgia,serif; font-size: 6rem; line-height: 1; }
-    .letter-card p { position: relative; margin-bottom: 15px; color: #705b64; font-family: Georgia, "Times New Roman", serif; font-size: clamp(1.08rem, 2vw, 1.28rem); line-height: 1.8; }
-    .letter-card p:last-child { margin-bottom: 0; }
-    .comfort { display: grid; grid-template-columns: .85fr 1.15fr; gap: 30px; align-items: center; max-width: 900px; margin: 0 auto; padding: clamp(25px, 4vw, 42px); border-radius: 30px; background: #f4edf8; }
-    .comfort-art { display: grid; place-items: center; min-height: 220px; }
-    .comfort-art svg { width: min(100%, 260px); height: auto; }
-    .comfort h2 { font-size: clamp(1.9rem, 3vw, 2.55rem); }
-    .comfort-copy { color: var(--muted); }
-    .choices { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 20px; }
-    .choice { min-height: 42px; padding: 9px 14px; border: 1px solid rgba(120,77,100,.16); border-radius: 999px; color: #6b5360; background: rgba(255,255,255,.68); cursor: pointer; font-size: .9rem; font-weight: 700; transition: .18s ease; }
-    .choice:hover, .choice[aria-pressed="true"] { color: #923f5b; border-color: #e8b8c6; background: white; box-shadow: 0 6px 16px rgba(130,77,94,.08); }
-    .choice-response { min-height: 3.3em; margin: 15px 0 0; color: #765d68; font-size: .94rem; }
-    .ending { position: relative; overflow: hidden; margin: 35px auto 68px; padding: clamp(36px, 7vw, 72px) clamp(24px, 7vw, 80px); border-radius: 34px; color: white; text-align: center; background: linear-gradient(140deg, #d77994, #c96886 56%, #b96f93); box-shadow: 0 22px 55px rgba(175,83,115,.20); }
-    .ending::before, .ending::after { content: "♡"; position: absolute; color: rgba(255,255,255,.16); font-family: Georgia,serif; font-size: 9rem; line-height: 1; }
-    .ending::before { top: -18px; left: 3%; transform: rotate(-18deg); }
-    .ending::after { right: 3%; bottom: -52px; transform: rotate(14deg); }
-    .ending-inner { position: relative; z-index: 1; max-width: 690px; margin: auto; }
-    .ending .eyebrow { justify-content: center; color: rgba(255,255,255,.85); }
-    .ending h2 { margin-bottom: 17px; }
-    .ending p { margin-bottom: 12px; color: rgba(255,255,255,.91); font-size: 1.04rem; }
-    .ending .love { display: inline-block; margin: 18px 0 0; font-family: Georgia,serif; font-size: clamp(1.65rem, 4vw, 2.35rem); font-weight: 700; }
-    .ending .love span { display: inline-block; color: #ffe1e8; animation: heartbeat 1.7s ease-in-out infinite; }
-    @keyframes heartbeat { 0%,100% { transform: scale(1); } 12% { transform: scale(1.2); } 24% { transform: scale(1); } 36% { transform: scale(1.12); } }
-    footer { padding: 0 0 28px; color: #9a828a; text-align: center; font-size: .83rem; }
-    footer span { color: var(--rose); }
-    dialog { width: min(440px, calc(100% - 28px)); padding: 0; overflow: visible; border: 1px solid rgba(255,255,255,.9); border-radius: 28px; color: var(--ink); background: var(--cream); box-shadow: 0 30px 90px rgba(58,32,44,.28); }
-    dialog::backdrop { background: rgba(72,46,59,.42); backdrop-filter: blur(5px); }
-    .dialog-inner { position: relative; padding: 30px 28px 32px; text-align: center; }
-    .dialog-close { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; display: grid; place-items: center; border: 0; border-radius: 50%; color: #765b66; background: #f7e8ec; cursor: pointer; font-size: 1.3rem; }
-    .hug-illustration { display: block; width: 190px; height: 170px; margin: 8px auto 5px; }
-    .dialog-inner h2 { margin-bottom: 8px; font-size: 2rem; }
-    .dialog-inner p { margin: 0 auto; max-width: 330px; color: var(--muted); }
-    .hug-heart { animation: heartbeat 1.5s ease-in-out infinite; transform-origin: center; }
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-    @media (max-width: 760px) {
-      .wrap { width: min(100% - 32px, 560px); }
-      .topbar { padding: 14px 0; }
-      .nav-note { font-size: .78rem; }
-      .hero { grid-template-columns: 1fr; gap: 26px; padding: 30px 0 48px; }
-      .hero-text { text-align: center; }
-      .hero-text .eyebrow { justify-content: center; }
-      h1 { margin-inline: auto; font-size: clamp(2.65rem, 12vw, 4rem); }
-      .hero-copy { margin-inline: auto; }
-      .actions { justify-content: center; }
-      .art-card { width: min(100%, 440px); min-height: 0; aspect-ratio: 1 / .88; margin-inline: auto; border-radius: 34px; }
-      .hero-art { width: min(100%, 400px); }
-      .section { padding: 35px 0; }
-      .comfort { grid-template-columns: 1fr; gap: 4px; text-align: center; }
-      .comfort-art { min-height: 155px; }
-      .comfort-art svg { width: 180px; }
-      .choices { justify-content: center; }
-      .choice { flex: 1 1 145px; }
-      .ending { margin: 22px auto 46px; border-radius: 28px; }
-    }
-    @media (max-width: 420px) {
-      .wrap { width: calc(100% - 24px); }
-      .nav-note { max-width: 120px; text-align: right; line-height: 1.3; }
-      .hero { padding-top: 23px; }
-      .hero .actions { display: grid; grid-template-columns: 1fr; width: min(100%, 320px); margin-inline: auto; }
-      .hero .btn { width: 100%; }
-      .art-card { aspect-ratio: 1 / .94; }
-      .letter-card { border-radius: 23px; }
-      .comfort { border-radius: 24px; }
-      .choice { flex-basis: 100%; }
-      .ending { padding-inline: 22px; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fff7f6">
+<meta name="description" content="Piyaari ke liye Ahmed ki taraf se aik narm si jhappi, bohat saara pyaar aur chhoti si pookie duniya.">
+<title>Aik pyaari si jhappi</title>
+<style>
+:root{color-scheme:light;--ink:#583e4c;--muted:#8e7381;--pink:#e5809c;--deep:#bd5c7b;--pale:#fbe5eb;--cream:#fff9f5;--lav:#f0eafa;--peach:#fff0e7;--line:rgba(140,91,111,.14);--shadow:0 18px 48px rgba(137,89,111,.12);font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;font-synthesis:none;text-rendering:optimizeLegibility}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:76px}body{margin:0;min-width:320px;overflow-x:hidden;color:var(--ink);line-height:1.65;background:radial-gradient(ellipse at 4% 5%,#ffdee9b5,transparent 27rem),radial-gradient(ellipse at 96% 27%,#e9e1f9a8,transparent 28rem),radial-gradient(ellipse at 0% 70%,#ffebd980,transparent 25rem),var(--cream)}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit}a{color:inherit}.wrap{width:min(1080px,calc(100% - 36px));margin:auto}h1,h2,h3,p{margin-top:0}h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.045em}h1{max-width:610px;margin-bottom:16px;font-size:clamp(2.7rem,6.6vw,5.2rem);line-height:1.03}h1 em{color:var(--deep);font-style:normal}h2{font-size:clamp(2rem,4.4vw,3.1rem);line-height:1.12;margin-bottom:12px}.progress{height:4px;position:fixed;z-index:20;inset:0 0 auto;background:#e5809c24}.progress span{height:100%;width:0;display:block;background:linear-gradient(90deg,#f3a7bc,#d96d8e)}.top{padding:16px 0 8px}.nav{display:flex;justify-content:space-between;align-items:center;gap:10px}.brand{display:flex;align-items:center;gap:9px;font-weight:900}.brand-icon{width:38px;height:38px;display:grid;place-items:center;border:1px solid #fff;border-radius:15px;background:#ffffffb8;color:var(--deep);box-shadow:0 7px 18px #89596f17;font-size:1.4rem}.nav-note{color:var(--muted);font-size:.82rem}.music{padding:8px 12px;min-height:40px;border:1px solid var(--line);border-radius:999px;color:#765b69;background:#ffffffb8;font-size:.8rem;font-weight:800;cursor:pointer}.music[aria-pressed=true]{color:#94465f;background:white;border-color:#eab7c5}.eyebrow{display:inline-flex;align-items:center;gap:8px;margin:0 0 12px;color:var(--deep);font-size:.72rem;font-weight:900;letter-spacing:.13em;text-transform:uppercase}.eyebrow:before,.eyebrow:after{content:"✿";opacity:.72}.hero{min-height:590px;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(28px,6vw,70px);padding:36px 0 65px}.hero-text{max-width:540px;color:var(--muted);font-size:1.05rem}.hero-text strong{color:var(--ink)}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.btn{min-height:49px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:11px 18px;border:1px solid transparent;border-radius:999px;text-decoration:none;font-weight:900;cursor:pointer;transition:transform .2s,box-shadow .2s}.btn:hover{transform:translateY(-2px)}.btn:focus-visible,.choice:focus-visible,.promise:focus-visible,.music:focus-visible{outline:3px solid #b85c79;outline-offset:3px}.primary{color:white;background:linear-gradient(135deg,#eb91aa,#cf6483);box-shadow:0 10px 23px #c95e7c40}.soft{color:#765766;border-color:var(--line);background:#ffffffc9}.tiny{font-size:.83rem;color:#a08491;margin:13px 0 0}.art-card{position:relative;min-height:400px;display:grid;place-items:center;overflow:hidden;border:1px solid #ffffffdd;border-radius:42% 42% 34px 34px/36% 36% 34px 34px;background:linear-gradient(148deg,#ffe9ed,#f3eafa 66%,#fff0e7);box-shadow:var(--shadow)}.art-card:before,.art-card:after{content:"";position:absolute;border-radius:50%;background:#ffffff66}.art-card:before{width:220px;height:220px;top:-96px;right:-44px}.art-card:after{width:180px;height:180px;left:-84px;bottom:-75px}.hero-svg{position:relative;z-index:1;width:min(100%,480px);padding:12px;overflow:visible}.float{animation:bob 4.2s ease-in-out infinite;transform-origin:center}.slow{animation:bob 5.2s ease-in-out -1.4s infinite;transform-origin:center}.twinkle{animation:twinkle 2.8s ease-in-out infinite;transform-origin:center}@keyframes bob{50%{transform:translateY(-8px)}}@keyframes twinkle{0%,100%{opacity:.5;transform:scale(.9)}50%{opacity:1;transform:scale(1.1)}}.section{padding:47px 0}.head{max-width:660px;margin:0 auto 26px;text-align:center}.head p:last-child{margin-bottom:0;color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.card{min-height:132px;padding:19px;border:1px solid #ffffffeb;border-radius:23px;background:#ffffffb5;box-shadow:0 10px 28px #89596f11;transition:transform .2s}.card:hover{transform:translateY(-3px)}.card i{display:block;margin-bottom:7px;font-style:normal;font-size:1.3rem}.card p{margin:0;color:#765f6b;font:1.02rem/1.55 Georgia,serif}.promise-box{max-width:820px;margin:auto;padding:clamp(20px,4vw,36px);border:1px solid #ffffffed;border-radius:29px;background:linear-gradient(145deg,#ffffffdf,#fff1f6d9);box-shadow:var(--shadow)}.promise-list{display:grid;grid-template-columns:1fr 1fr;gap:9px}.promise{min-height:56px;display:flex;align-items:center;gap:11px;padding:10px 13px;border:1px solid #9062761a;border-radius:16px;color:#705764;background:#ffffffb8;text-align:left;cursor:pointer;transition:.2s}.promise:hover,.promise[aria-pressed=true]{border-color:#eab5c4;background:#fff;box-shadow:0 6px 17px #8d566c17}.check{width:24px;height:24px;flex:0 0 24px;display:grid;place-items:center;border:1px solid #e5bdca;border-radius:8px;color:white;background:#fff9fa}.promise[aria-pressed=true] .check{background:var(--pink);border-color:var(--pink)}.promise-label{font-size:.9rem;font-weight:750}.ph{margin-left:auto;color:var(--pink);opacity:0}.promise[aria-pressed=true] .ph{opacity:1;animation:pop .3s}@keyframes pop{50%{transform:scale(1.5)}}.teddy-panel{position:relative;display:grid;grid-template-columns:.95fr 1.05fr;align-items:center;gap:24px;max-width:900px;margin:auto;padding:clamp(20px,4vw,37px);overflow:hidden;border:1px solid #ffffffeb;border-radius:32px;background:linear-gradient(145deg,#fce8ee,#f2ebfb 70%,#fff1e9);box-shadow:var(--shadow)}.teddy-panel:before{content:"♡";position:absolute;right:20px;top:4px;color:#e3849e33;font:7rem/1 Georgia}.teddy-stage{position:relative;display:grid;place-items:center;min-height:280px}.bear{position:relative;z-index:1;width:min(100%,315px);cursor:pointer;overflow:visible}.bear .body,.bear .arm,.bear .head{transform-box:fill-box;transform-origin:center;transition:transform .4s}.bear.hug .body{transform:scale(.93,1.04)}.bear.hug .left{transform:rotate(-20deg) translate(13px,-2px)}.bear.hug .right{transform:rotate(20deg) translate(-13px,-2px)}.bear.kiss .head{transform:rotate(8deg) translateX(4px)}.blush{opacity:.3;transition:opacity .25s}.bear.kiss .blush,.kiss-teddy.kissing .blush{opacity:1}.blink{animation:blink 4.8s infinite;transform-origin:center}@keyframes blink{0%,46%,50%,100%{transform:scaleY(1)}48%{transform:scaleY(.12)}}.teddy-copy{position:relative;z-index:1}.teddy-copy>p:not(.eyebrow){color:var(--muted)}.teddy-buttons{display:flex;flex-wrap:wrap;gap:10px;margin:17px 0 10px}.message{min-height:3em;margin:12px 0 0;color:#a24f6b;font:700 1.08rem/1.55 Georgia,serif}.hint{color:#a18492;font-size:.8rem}.mood-panel{display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:24px;max-width:910px;margin:auto;padding:clamp(20px,4vw,36px);border-radius:31px;background:#f2ecf9d6}.mood-copy{color:var(--muted)}.choices{display:flex;flex-wrap:wrap;gap:8px}.choice{min-height:41px;padding:8px 12px;border:1px solid #8560782b;border-radius:999px;color:#705866;background:#ffffffc7;cursor:pointer;font-size:.86rem;font-weight:800;transition:.18s}.choice:hover,.choice[aria-pressed=true]{color:#964862;border-color:#e7b1c1;background:white;box-shadow:0 6px 17px #85577017}.response{min-height:4.5em;margin:13px 0;color:#735c6a;font-size:.93rem}.breath-row{display:flex;align-items:center;gap:10px;padding-top:13px;border-top:1px solid #83607924}.heart{width:45px;flex:0 0 45px;color:#dd7393;text-align:center;font-size:2rem}.heart.breathe{animation:breathe 4s ease-in-out 3}@keyframes breathe{0%,100%{transform:scale(.75);opacity:.7}50%{transform:scale(1.22);opacity:1}}.breath-label{flex:1;color:#7b6371;font-size:.82rem}.breath-row .btn{padding:9px 13px;font-size:.82rem}.jar-card{max-width:800px;display:grid;grid-template-columns:170px 1fr;align-items:center;gap:22px;margin:auto;padding:clamp(22px,4vw,38px);border:1px solid #ffffffed;border-radius:29px;background:linear-gradient(145deg,#fff8f1,#fff0f3);box-shadow:var(--shadow)}.jar{width:155px;margin:auto;animation:bob 4.4s ease-in-out infinite}.note{min-height:100px;display:flex;align-items:center;margin-bottom:13px;padding:17px 19px;border:1px dashed #e7b7c5;border-radius:18px;color:#795c6b;background:#ffffffad;font:1.05rem/1.55 "Comic Sans MS","Trebuchet MS",cursive}.jar-copy p{color:var(--muted)}.jar-button{min-height:45px;padding:10px 17px;border:0;border-radius:999px;color:white;background:linear-gradient(135deg,#e990aa,#ce6483);box-shadow:0 9px 20px #c95e7c33;font-weight:900;cursor:pointer}.ending{position:relative;margin:30px auto 35px;padding:clamp(28px,6vw,58px) clamp(20px,5vw,56px);overflow:hidden;border-radius:35px;color:white;text-align:center;background:linear-gradient(145deg,#d77a98,#bc6c93 60%,#a980b2);box-shadow:0 22px 55px #8c537933}.ending:before,.ending:after{content:"✿";position:absolute;color:#ffffff21;font-size:8rem;line-height:1}.ending:before{top:-25px;left:3%;transform:rotate(-18deg)}.ending:after{right:3%;bottom:-60px;transform:rotate(17deg)}.ending-inner{position:relative;z-index:1;max-width:700px;margin:auto}.ending .eyebrow{color:#ffffffdf}.ending p{color:#ffffffe8}.gift{display:block;width:min(100%,270px);height:195px;margin:0 auto 7px;overflow:visible}.bloom{transform-box:fill-box;transform-origin:bottom center;animation:bloom 1.4s both}@keyframes bloom{0%{transform:scale(.1);opacity:.15}70%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}.type-line{min-height:3.4em;max-width:560px;margin:0 auto 8px;font:clamp(1.04rem,2.5vw,1.3rem)/1.55 Georgia,serif}.love-line{margin:10px 0 19px;font:700 clamp(2rem,6vw,3.1rem) Georgia,serif;text-shadow:0 0 24px #ffeef37a}.love-line span{display:inline-block;animation:heartbeat 1.8s infinite}@keyframes heartbeat{0%,100%{transform:scale(1)}14%{transform:scale(1.18)}28%{transform:scale(1)}42%{transform:scale(1.1)}}.closing{margin:0 auto 22px;color:#ffffffef!important;font-size:.97rem}.kiss-finale{max-width:760px;margin:0 auto 73px;padding:clamp(26px,5vw,45px);overflow:hidden;border:1px solid #ffffffed;border-radius:31px;background:linear-gradient(140deg,#fff,#fff0f5 60%,#f4edfc);box-shadow:var(--shadow);text-align:center}.kiss-finale h2{font-size:clamp(1.8rem,4.2vw,2.75rem);color:#734b5e}.kiss-finale p{color:var(--muted)}.kiss-teddy{width:140px;display:block;margin:0 auto 10px;cursor:pointer;overflow:visible}.kiss-message{min-height:1.7em;margin:12px 0 0!important;color:var(--deep)!important;font:800 1.02rem Georgia,serif}.footer{padding:0 0 28px;color:#a18693;text-align:center;font-size:.82rem}.footer span{color:var(--pink)}.badge{position:fixed;z-index:15;left:50%;bottom:max(12px,env(safe-area-inset-bottom));display:flex;gap:7px;align-items:center;padding:9px 14px;border:1px solid #ffffffe6;border-radius:999px;color:#795767;background:#ffffffe0;box-shadow:0 8px 28px #6c455829;backdrop-filter:blur(10px);font-size:.8rem;font-weight:900;white-space:nowrap;transform:translateX(-50%)}.badge span{color:var(--deep)}.floaties{position:fixed;z-index:-1;inset:0;overflow:hidden;pointer-events:none}.floaty{position:absolute;bottom:-35px;color:#dd7e9940;animation:up linear forwards}@keyframes up{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}.tiny-heart{position:fixed;z-index:30;pointer-events:none;animation:pop-up .9s ease-out forwards;font-size:17px}@keyframes pop-up{0%{transform:translate(-50%,-20%) scale(.5);opacity:.95}100%{transform:translate(-50%,-90px) scale(1.2) rotate(18deg);opacity:0}}.toast{position:fixed;z-index:25;left:50%;bottom:73px;max-width:calc(100% - 30px);width:max-content;padding:10px 15px;border:1px solid #ffffffeb;border-radius:999px;color:#795365;background:#fffffff2;box-shadow:var(--shadow);text-align:center;font-size:.88rem;font-weight:900;opacity:0;pointer-events:none;transform:translate(-50%,12px);transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}.reveal{opacity:0;transform:translateY(16px);transition:opacity .65s,transform .65s}.reveal.visible{opacity:1;transform:none}
+@media(max-width:760px){.wrap{width:min(calc(100% - 30px),560px)}.hero{min-height:unset;grid-template-columns:1fr;gap:24px;padding:30px 0 45px}.hero-text{text-align:center;margin:auto}.hero-text .eyebrow{justify-content:center}.hero-copy{margin:auto}h1{font-size:clamp(2.65rem,12vw,4rem)}.actions{justify-content:center}.art-card{width:min(100%,430px);min-height:0;aspect-ratio:1/.87;margin:auto;border-radius:31px}.hero-svg{width:min(100%,400px)}.section{padding:35px 0}.teddy-panel{grid-template-columns:1fr;gap:4px;text-align:center}.teddy-stage{min-height:245px}.bear{width:min(83%,280px)}.teddy-buttons{justify-content:center}.mood-panel{grid-template-columns:1fr;gap:4px}.mood-panel>div:first-child{text-align:center}.choices{justify-content:center}.choice{flex:1 1 145px}.jar-card{grid-template-columns:130px 1fr;gap:14px}.jar{width:125px}.ending{margin:20px auto 28px}.kiss-finale{margin-bottom:67px}}
+@media(max-width:430px){.wrap{width:calc(100% - 24px)}.nav-note{display:none}.brand{font-size:.88rem}.brand-icon{width:35px;height:35px}.music{font-size:.74rem;padding-inline:10px}.hero{padding-top:23px}.actions{display:grid;grid-template-columns:1fr;width:min(100%,320px);margin:20px auto 0}.actions .btn{width:100%}.cards{grid-template-columns:1fr}.card{min-height:unset;display:flex;align-items:center;gap:12px;padding:14px 16px}.card i{margin:0}.promise-list{grid-template-columns:1fr}.teddy-buttons{display:grid;grid-template-columns:1fr 1fr}.teddy-buttons .btn{padding-inline:10px}.choice{flex-basis:100%}.jar-card{grid-template-columns:1fr;text-align:center}.jar{width:132px}.note{justify-content:center;text-align:center}.breath-row{text-align:left}.ending{padding-inline:20px}.badge{font-size:.75rem;padding:8px 12px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap nav">
-      <div class="brand">
-        <span class="brand-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 20s-7.5-4.5-7.5-10.2A4.3 4.3 0 0 1 12 7.1a4.3 4.3 0 0 1 7.5 2.7C19.5 15.5 12 20 12 20Z" fill="currentColor"/><path d="M8.5 10.5c.8-1.3 1.8-1.7 2.7-1.7" stroke="white" stroke-width="1.4" stroke-linecap="round"/></svg></span>
-        <span>Aap ke naam</span>
-      </div>
-      <span class="nav-note">Aik chhota sa pyaar bhara paighaam</span>
-    </div>
-  </header>
-  <main>
-    <section class="wrap hero" aria-labelledby="hero-title">
-      <div class="hero-text">
-        <p class="eyebrow">A little corner of comfort</p>
-        <h1 id="hero-title">Meri pyari dost, aap <em>bohat khaas</em> hain.</h1>
-        <p class="hero-copy">Aap ko abhi jawab dene ki zaroorat nahi. Jab aap ka dil chahe, main aap ki baat <strong>pyaar aur sukoon se</strong> sunne ke liye yahan hoon.</p>
-        <div class="actions">
-          <button class="btn btn-primary" id="hugButton" type="button">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20s-7-4.3-7-9.7A4.1 4.1 0 0 1 12 7.5a4.1 4.1 0 0 1 7 2.8C19 15.7 12 20 12 20Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 12.5c.8 1.5 2 2.3 4 2.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
-            Teddy se aik hug lein
-          </button>
-          <a class="btn btn-secondary" href="#dil-ki-baat">Dil ki baat parhein</a>
-        </div>
-        <p class="tiny-note">Aap ka waqt, aap ki marzi. Koi jaldi nahi. ♡</p>
-      </div>
-      <div class="art-card" aria-label="Pink teddy bear aur do pyari cats ki illustration">
-        <svg class="hero-art" viewBox="0 0 520 460" role="img" aria-labelledby="artTitle artDesc">
-          <title id="artTitle">Aik pyaara teddy aur us ki cat dost</title>
-          <desc id="artDesc">Gulabi teddy bear ke saath do chhoti cats, dil aur sitaray.</desc>
-          <ellipse cx="266" cy="414" rx="174" ry="21" fill="#d7bed3" opacity=".38"/>
-          <g class="twinkle" fill="#fff9fb"><path d="m98 113 5 14 14 5-14 5-5 14-5-14-14-5 14-5z"/><path d="m414 105 4 11 11 4-11 4-4 11-4-11-11-4 11-4z"/></g>
-          <g class="twinkle" fill="#e99ab0"><path d="m131 240 3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/><path d="m395 210 3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/></g>
-          <g class="float-slow" transform="translate(54 240)">
-            <path d="M49 91c-25 0-43-16-43-39 0-19 13-34 32-37 8-1 18 2 24 7 16 12 22 28 19 44-3 16-16 25-32 25Z" fill="#f5f0f5"/>
-            <path d="M14 38 17 3l27 20M48 22 75 2l-2 38" fill="#f5f0f5" stroke="#f5f0f5" stroke-width="7" stroke-linejoin="round"/>
-            <path d="m22 27 1-14 12 10m22-2 12-10-1 16" fill="#f4bdcb"/>
-            <ellipse cx="37" cy="54" rx="3" ry="4" fill="#664c57"/><ellipse cx="63" cy="54" rx="3" ry="4" fill="#664c57"/>
-            <path d="M46 62q4 5 8 0m-4 0v4m0 0q-4 5-8 0m8 0q4 5 8 0" fill="none" stroke="#b8687d" stroke-width="1.8" stroke-linecap="round"/>
-            <ellipse cx="27" cy="62" rx="6" ry="3.5" fill="#f2c2ce"/><ellipse cx="73" cy="62" rx="6" ry="3.5" fill="#f2c2ce"/>
-            <ellipse cx="49" cy="101" rx="27" ry="19" fill="#f8f3f7"/><path d="M29 87q-18 6-17 23m57-23q18 6 17 23" fill="none" stroke="#f8f3f7" stroke-width="13" stroke-linecap="round"/>
-            <ellipse cx="34" cy="112" rx="14" ry="8" fill="#f8f3f7"/><ellipse cx="64" cy="112" rx="14" ry="8" fill="#f8f3f7"/>
-          </g>
-          <g class="float" transform="translate(157 62)">
-            <circle cx="102" cy="78" r="41" fill="#e99aaf"/><circle cx="174" cy="78" r="41" fill="#e99aaf"/>
-            <circle cx="102" cy="78" r="22" fill="#f4c0cc"/><circle cx="174" cy="78" r="22" fill="#f4c0cc"/>
-            <ellipse cx="138" cy="130" rx="84" ry="77" fill="#ec9eb3"/>
-            <ellipse cx="138" cy="316" rx="105" ry="111" fill="#df819c"/>
-            <ellipse cx="138" cy="321" rx="61" ry="68" fill="#f4c4ce"/>
-            <path d="M70 260Q28 222 19 258q-8 34 42 59m145-57q41-39 52-2 8 34-42 59" fill="none" stroke="#df819c" stroke-width="40" stroke-linecap="round"/>
-            <ellipse cx="80" cy="408" rx="42" ry="25" fill="#cf6e8a"/><ellipse cx="196" cy="408" rx="42" ry="25" fill="#cf6e8a"/>
-            <ellipse cx="114" cy="127" rx="5.5" ry="7" fill="#684754"/><ellipse cx="162" cy="127" rx="5.5" ry="7" fill="#684754"/>
-            <ellipse cx="138" cy="147" rx="19" ry="15" fill="#f8e6e8"/><path d="m133 143 5-4 5 4-5 6z" fill="#9d5266"/><path d="M138 149v5m0 0q-7 8-13 0m13 0q7 8 13 0" fill="none" stroke="#9d5266" stroke-width="2.4" stroke-linecap="round"/>
-            <ellipse cx="104" cy="151" rx="11" ry="6" fill="#f5b5c3"/><ellipse cx="172" cy="151" rx="11" ry="6" fill="#f5b5c3"/>
-            <path d="M110 220q28 18 56 0" fill="none" stroke="#c45d79" stroke-width="4" stroke-linecap="round"/><path d="m138 226 10 12-10 12-10-12z" fill="#fff0f3"/><circle cx="138" cy="237" r="3" fill="#d36d89"/>
-          </g>
-          <g class="float-slow" transform="translate(363 280)">
-            <path d="M42 78c-22 0-37-14-37-34 0-17 12-29 28-31 8-1 16 1 22 6 14 10 19 24 17 38-3 14-14 21-30 21Z" fill="#fff4e8"/>
-            <path d="M12 32 14 3l23 17M44 19 67 2l-2 33" fill="#fff4e8" stroke="#fff4e8" stroke-width="6" stroke-linejoin="round"/>
-            <path d="m20 24 1-12 11 9m20-3 10-9-1 14" fill="#efb8b1"/>
-            <ellipse cx="31" cy="47" rx="2.8" ry="3.5" fill="#634c4d"/><ellipse cx="54" cy="47" rx="2.8" ry="3.5" fill="#634c4d"/><path d="m40 54 3-2 3 2-3 3zM43 57v3m0 0q-4 4-7 0m7 0q4 4 7 0" fill="none" stroke="#b87476" stroke-width="1.7" stroke-linecap="round"/>
-            <ellipse cx="24" cy="55" rx="5" ry="3" fill="#f5c5c4"/><ellipse cx="61" cy="55" rx="5" ry="3" fill="#f5c5c4"/>
-            <ellipse cx="42" cy="87" rx="25" ry="20" fill="#fff4e8"/><path d="M25 82q-18 6-15 20m49-20q18 6 15 20" fill="none" stroke="#fff4e8" stroke-width="12" stroke-linecap="round"/><ellipse cx="29" cy="101" rx="13" ry="7" fill="#fff4e8"/><ellipse cx="55" cy="101" rx="13" ry="7" fill="#fff4e8"/>
-          </g>
-          <g class="twinkle" transform="translate(365 130)"><path d="M0 18c0-9 7-16 16-16 6 0 10 3 13 7 3-4 7-7 13-7 9 0 16 7 16 16 0 15-29 34-29 34S0 33 0 18Z" fill="#e58ca5" opacity=".78"/></g>
-        </svg>
-      </div>
-    </section>
-    <section class="wrap section" id="dil-ki-baat" aria-labelledby="letter-title">
-      <div class="section-head">
-        <p class="eyebrow">Aik dil ki baat</p>
-        <h2 id="letter-title">Aap ko kuch yaad dilana tha</h2>
-        <p>Yeh chhota sa paighaam sirf aap ke liye hai.</p>
-      </div>
-      <div class="letter-card">
-        <p>Aap bohat qeemti hain—sirf kisi ke liye nahi, apne aap ke liye bhi. Aap ko har waqt mazboot banne ki zaroorat nahi.</p>
-        <p>Jab bhi aap ka dil kare, main pyaar aur sabr se aap ki baat sununga. Aap jitna chahein, utna hi share karein. Aap ki feelings aur aap ka sukoon mere liye ahm hain.</p>
-        <p>Aap ko izzat, narmi aur khayal milna chahiye. Main apni taraf se hamesha ehsaas ke saath aap ka saath dene ki koshish karunga.</p>
-      </div>
-    </section>
-    <section class="wrap section" aria-labelledby="comfort-title">
-      <div class="comfort">
-        <div class="comfort-art" aria-hidden="true">
-          <svg viewBox="0 0 250 220">
-            <ellipse cx="125" cy="201" rx="82" ry="10" fill="#d8c5dc" opacity=".5"/>
-            <circle cx="92" cy="59" r="27" fill="#e99aaf"/><circle cx="158" cy="59" r="27" fill="#e99aaf"/><circle cx="92" cy="59" r="14" fill="#f4c0cc"/><circle cx="158" cy="59" r="14" fill="#f4c0cc"/>
-            <ellipse cx="125" cy="91" rx="59" ry="54" fill="#ec9eb3"/><ellipse cx="125" cy="158" rx="68" ry="61" fill="#df819c"/><ellipse cx="125" cy="159" rx="39" ry="39" fill="#f4c4ce"/>
-            <path d="M79 145Q51 122 46 147q-4 24 29 36m100-38q28-24 34 1 4 24-29 37" fill="none" stroke="#df819c" stroke-width="24" stroke-linecap="round"/>
-            <ellipse cx="108" cy="91" rx="4" ry="5" fill="#684754"/><ellipse cx="142" cy="91" rx="4" ry="5" fill="#684754"/><ellipse cx="125" cy="105" rx="14" ry="11" fill="#f8e6e8"/><path d="m121 103 4-3 4 3-4 4z" fill="#9d5266"/><path d="M125 107v4m0 0q-5 5-9 0m9 0q5 5 9 0" fill="none" stroke="#9d5266" stroke-width="1.8" stroke-linecap="round"/>
-            <path d="m185 47 7 10 12 2-9 8 2 12-12-6-11 6 2-12-9-8 12-2z" fill="#fff" opacity=".8"/>
-          </svg>
-        </div>
-        <div>
-          <p class="eyebrow">Aap ki marzi, aap ka waqt</p>
-          <h2 id="comfort-title">Aaj aap ko kis cheez ki zaroorat hai?</h2>
-          <p class="comfort-copy">Agar chahein, in mein se aik chunein. Yeh bas aik pyaara sa reminder hai—koi jawab bhejne ki zaroorat nahi.</p>
-          <div class="choices" role="group" aria-label="Aaj aap ko kis cheez ki zaroorat hai?">
-            <button class="choice" type="button" aria-pressed="false" data-message="Main aap ki baat bina kisi faislay ke sununga. Aap jitna chahein, utna hi share karein.">Bas meri baat sunein</button>
-            <button class="choice" type="button" aria-pressed="false" data-message="Bilkul. Aap ka waqt aap ka hai. Jab aap baat karna chahein, main yahin hoon.">Thori si space</button>
-            <button class="choice" type="button" aria-pressed="false" data-message="Main aap ke saath hoon— aap ki apni pace par, bina kisi pressure ke.">Bas saath chahiye</button>
-          </div>
-          <p class="choice-response" id="choiceResponse" aria-live="polite">Aap jo chunein, us ki izzat hogi. ♡</p>
-        </div>
-      </div>
-    </section>
-    <section class="wrap ending" aria-labelledby="ending-title">
-      <div class="ending-inner">
-        <p class="eyebrow">Aap ke liye, dil se</p>
-        <h2 id="ending-title">Aap mere dil ke bohat qareeb hain.</h2>
-        <p>Aap ki muskurahat meri duniya ko roshan kar deti hai. Main chahta hoon ke aap hamesha yaad rakhein ke aap bohat khaas, bohat qeemti aur bohat pyaari hain.</p>
-        <p>Aap ki feelings, aap ka sukoon aur aap ki khushi ahm hain. Aap ke saath bitaya har lamha mere liye khoobsurat hai, aur main aap se bohat, bohat pyaar karta hoon.</p>
-        <div class="love">I love you <span aria-hidden="true">♥</span></div>
-        <p style="margin: 6px 0 0; font-family: Georgia,serif; font-size: 1.12rem;">meri pyari dost</p>
-      </div>
-    </section>
-  </main>
-<section class="wrap kiss-section" style="padding:28px 0 56px;" aria-labelledby="kiss-title">
-    <div class="kiss-card" style="max-width:760px;margin:0 auto;padding:clamp(28px,5vw,48px);text-align:center;border:1px solid var(--line);border-radius:30px;background:linear-gradient(135deg,#fff,#f8e8ef);box-shadow:var(--shadow);">
-      <p class="eyebrow">Aap ke liye aik pyaari si baat</p>
-      <svg class="kiss-teddy float" style="display:block;width:124px;height:124px;margin:0 auto 14px;" viewBox="0 0 140 140" role="img" aria-label="Pink teddy aap ko flying kiss bhej raha hai">
-        <circle cx="40" cy="38" r="25" fill="#e99aaf"/><circle cx="100" cy="38" r="25" fill="#e99aaf"/>
-        <circle cx="40" cy="38" r="13" fill="#f4c0cc"/><circle cx="100" cy="38" r="13" fill="#f4c0cc"/>
-        <ellipse cx="70" cy="75" rx="54" ry="48" fill="#e99aaf"/>
-        <ellipse cx="70" cy="88" rx="24" ry="18" fill="#f8e6e8"/>
-        <ellipse cx="54" cy="71" rx="4" ry="5" fill="#684754"/><ellipse cx="86" cy="71" rx="4" ry="5" fill="#684754"/>
-        <path d="m66 82 4-3 4 3-4 4z" fill="#9d5266"/><path d="M70 86q-5 6-10 0m10 0q5 6 10 0" fill="none" stroke="#9d5266" stroke-width="2" stroke-linecap="round"/>
-        <ellipse cx="42" cy="84" rx="9" ry="5" fill="#f5b5c3"/><ellipse cx="98" cy="84" rx="9" ry="5" fill="#f5b5c3"/>
-        <path class="hug-heart" d="M104 102c0-7 5-12 12-12 4 0 8 2 10 6 2-4 6-6 10-6 7 0 12 5 12 12 0 11-22 25-22 25s-22-14-22-25Z" fill="#da6e8d" transform="translate(-8 -12) scale(.72)"/>
-      </svg>
-      <h2 id="kiss-title">Is se bhi zyada pyaar se main aap ko kiss karunga ♡</h2>
-      <p>Agar aap chahein, pink teddy se aik pyaara sa flying kiss lein.</p>
-      <button class="btn btn-primary kiss-button" id="kissButton" type="button" onclick="document.getElementById('kissResponse').textContent='Mwaah! Yeh pyaara sa kiss sirf aap ke liye hai ♡'">Teddy ka kiss lein <span aria-hidden="true">💋</span></button>
-      <p class="kiss-response" id="kissResponse" aria-live="polite" style="min-height:1.5em;color:var(--rose-deep);font-weight:700;margin:14px 0 0;">Aap ki marzi, aap ka pyaara sa moment. ♡</p>
-    </div>
-  </section>
-  <footer>Aik virtual hug aur bohat saara pyaar <span aria-hidden="true">♥</span></footer>
-  <dialog id="hugDialog" aria-labelledby="hugTitle" aria-describedby="hugText">
-    <div class="dialog-inner">
-      <button class="dialog-close" id="closeDialog" type="button" aria-label="Paighaam band karein">×</button>
-      <svg class="hug-illustration" viewBox="0 0 200 175" role="img" aria-label="Khulay bazuon wala pink teddy bear aur aik chhoti cat">
-        <ellipse cx="100" cy="164" rx="72" ry="8" fill="#e8d6df"/>
-        <circle cx="72" cy="41" r="24" fill="#e99aaf"/><circle cx="128" cy="41" r="24" fill="#e99aaf"/><circle cx="72" cy="41" r="12" fill="#f4c0cc"/><circle cx="128" cy="41" r="12" fill="#f4c0cc"/>
-        <ellipse cx="100" cy="70" rx="45" ry="40" fill="#ec9eb3"/><ellipse cx="100" cy="132" rx="53" ry="39" fill="#df819c"/><ellipse cx="100" cy="131" rx="31" ry="24" fill="#f4c4ce"/>
-        <path d="M61 104Q27 79 20 99q-6 20 28 32m91-27q34-25 41-5 6 20-28 32" fill="none" stroke="#df819c" stroke-width="22" stroke-linecap="round"/>
-        <ellipse cx="86" cy="70" rx="4" ry="5" fill="#684754"/><ellipse cx="114" cy="70" rx="4" ry="5" fill="#684754"/><ellipse cx="100" cy="82" rx="13" ry="10" fill="#f8e6e8"/><path d="m96 80 4-3 4 3-4 4z" fill="#9d5266"/><path d="M100 84v4m0 0q-5 5-9 0m9 0q5 5 9 0" fill="none" stroke="#9d5266" stroke-width="1.7" stroke-linecap="round"/>
-        <path class="hug-heart" d="M139 27c0-7 5-12 12-12 4 0 8 2 10 6 2-4 6-6 10-6 7 0 12 5 12 12 0 11-22 25-22 25s-22-14-22-25Z" fill="#da6e8d"/>
-        <g transform="translate(7 116) scale(.43)"><path d="M20 51 22 4l35 29M58 32 93 4l-2 47" fill="#fff4e8" stroke="#fff4e8" stroke-width="10" stroke-linejoin="round"/><ellipse cx="57" cy="77" rx="46" ry="34" fill="#fff4e8"/><ellipse cx="43" cy="75" rx="3" ry="4" fill="#634c4d"/><ellipse cx="70" cy="75" rx="3" ry="4" fill="#634c4d"/><path d="m53 85 4-3 4 3-4 4z" fill="#b87476"/></g>
-      </svg>
-      <h2 id="hugTitle">Yeh hug aap ke naam ♡</h2>
-      <p id="hugText">Kaash main abhi aap ko aik pur-sukoon sa hug de pata. InshaAllah, aik din aap ko aisay galay lagaunga ke aap ke dil ke saare gham door ho jaayen.</p>
-    </div>
-  </dialog>
-  <script>
-    const hugDialog = document.getElementById('hugDialog');
-    const hugButton = document.getElementById('hugButton');
-    const closeDialog = document.getElementById('closeDialog');
-    hugButton.addEventListener('click', () => {
-      if (typeof hugDialog.showModal === 'function') hugDialog.showModal();
-      else hugDialog.setAttribute('open', '');
-    });
-    closeDialog.addEventListener('click', () => hugDialog.close ? hugDialog.close() : hugDialog.removeAttribute('open'));
-    hugDialog.addEventListener('click', (event) => {
-      if (event.target === hugDialog) hugDialog.close ? hugDialog.close() : hugDialog.removeAttribute('open');
-    });
-    document.querySelectorAll('.choice').forEach((button) => {
-      button.addEventListener('click', () => {
-        document.querySelectorAll('.choice').forEach((item) => item.setAttribute('aria-pressed', 'false'));
-        button.setAttribute('aria-pressed', 'true');
-        document.getElementById('choiceResponse').textContent = button.dataset.message;
-      });
-    });
-  </script>
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div><div class="floaties" id="floaties" aria-hidden="true"></div>
+<header class="top"><div class="wrap nav"><div class="brand"><span class="brand-icon" aria-hidden="true">♡</span><span>Aap ke naam, dil se</span></div><span class="nav-note">Aik chhota sa pyaar bhara paighaam 🌷</span><button class="music" id="musicToggle" type="button" aria-pressed="false">♫ Music: off</button></div></header>
+<main>
+<section class="wrap hero" aria-labelledby="heroTitle"><div class="hero-text"><p class="eyebrow">Aap ke liye aik narm si jhappi</p><h1 id="heroTitle">Hey <span id="yourNameHero">Piyaari</span>... yeh sirf <em>aap ke liye</em> hai 🌸</h1><p>Mujhe pata hai yeh din mushkil hain. Idhar aaiye, <strong>main aap ke saath hoon</strong> aur aap ka khayal rakhunga. Aap ko abhi kuch kehne ki zaroorat nahi—bas is chhoti si pyaari duniya mein aaram kijiye. 🧸</p><div class="actions"><a class="btn primary" href="#teddy">Apni jhappi kholiye 🤗</a><a class="btn soft" href="#saath">Pyaara paighaam ♡</a></div><p class="tiny">Aap ka waqt, aap ki marzi. Main narmi se yahin hoon. 💗</p></div>
+<div class="art-card" aria-label="Pink teddy bear aur do pyari cats"><svg class="hero-svg" viewBox="0 0 500 420" role="img" aria-labelledby="heroArtTitle"><title id="heroArtTitle">Aik pink teddy aur uski billi dost</title><ellipse cx="250" cy="390" rx="160" ry="17" fill="#cfb6ce" opacity=".35"/><g class="twinkle" fill="#fff"><path d="m83 100 5 13 13 5-13 5-5 13-5-13-13-5 13-5z"/><path d="m408 84 4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/></g>
+<g class="slow" transform="translate(32 253)"><path d="M48 77C24 77 8 62 8 42c0-17 12-30 29-32 7-1 15 1 21 6 14 10 19 24 16 39-3 14-13 22-26 22Z" fill="#fff4e8"/><path d="M13 34 15 4l25 20M48 23 74 4l-2 34" fill="#fff4e8" stroke="#fff4e8" stroke-width="7" stroke-linejoin="round"/><path d="m21 25 1-13 12 10m21-2 12-10-1 16" fill="#efc0b6"/><ellipse cx="34" cy="50" rx="3" ry="4" fill="#634c4d"/><ellipse cx="58" cy="50" rx="3" ry="4" fill="#634c4d"/><path d="m43 58 4-3 4 3-4 4zM47 62v3m0 0q-4 4-8 0m8 0q4 4 8 0" fill="none" stroke="#b87476" stroke-width="1.8" stroke-linecap="round"/><ellipse cx="27" cy="59" rx="6" ry="3.5" fill="#f5c5c4"/><ellipse cx="66" cy="59" rx="6" ry="3.5" fill="#f5c5c4"/><ellipse cx="48" cy="91" rx="27" ry="20" fill="#fff4e8"/><path d="M28 85q-17 6-14 22m51-22q17 6 14 22" fill="none" stroke="#fff4e8" stroke-width="13" stroke-linecap="round"/><ellipse cx="34" cy="108" rx="14" ry="8" fill="#fff4e8"/><ellipse cx="62" cy="108" rx="14" ry="8" fill="#fff4e8"/></g>
+<g class="float" transform="translate(144 51)"><circle cx="95" cy="67" r="39" fill="#e990aa"/><circle cx="165" cy="67" r="39" fill="#e990aa"/><circle cx="95" cy="67" r="21" fill="#f5c5d0"/><circle cx="165" cy="67" r="21" fill="#f5c5d0"/><ellipse cx="130" cy="120" rx="81" ry="73" fill="#eca0b3"/><ellipse cx="130" cy="298" rx="100" ry="105" fill="#df829e"/><ellipse cx="130" cy="304" rx="58" ry="63" fill="#f4c6d0"/><path d="M66 251q-39-36-49-2-8 31 43 55m141-55q39-36 49-2 8 31-43 55" fill="none" stroke="#df829e" stroke-width="38" stroke-linecap="round"/><ellipse cx="93" cy="115" rx="5" ry="7" fill="#654753"/><ellipse cx="167" cy="115" rx="5" ry="7" fill="#654753"/><ellipse cx="130" cy="137" rx="18" ry="14" fill="#fff0f2"/><path d="m125 134 5-4 5 4-5 5zM130 140v5m0 0q-7 8-13 0m13 0q7 8 13 0" fill="none" stroke="#a95770" stroke-width="2.2" stroke-linecap="round"/><ellipse cx="82" cy="145" rx="10" ry="5.5" fill="#f3b6c4"/><ellipse cx="178" cy="145" rx="10" ry="5.5" fill="#f3b6c4"/><path d="m130 213 11 13-11 13-11-13z" fill="#fff0f3"/></g>
+<g class="slow" transform="translate(361 279)"><path d="M39 65C20 65 7 53 7 36c0-14 10-25 24-27 6-1 13 1 18 5 11 9 16 20 13 33-2 12-11 18-23 18Z" fill="#f7f0f5"/><path d="M11 29 13 5l20 19M40 20 61 5l-2 28" fill="#f7f0f5" stroke="#f7f0f5" stroke-width="6" stroke-linejoin="round"/><path d="m18 23 1-11 10 9m18-3 10-8-1 12" fill="#f3c0cc"/><ellipse cx="29" cy="42" rx="2.5" ry="3.5" fill="#664d5a"/><ellipse cx="50" cy="42" rx="2.5" ry="3.5" fill="#664d5a"/><path d="m37 49 3-2 3 2-3 3zM40 52v3m0 0q-4 4-7 0m7 0q4 4 7 0" fill="none" stroke="#b8687d" stroke-width="1.5"/><ellipse cx="22" cy="51" rx="4.5" ry="3" fill="#f3c0cc"/><ellipse cx="58" cy="51" rx="4.5" ry="3" fill="#f3c0cc"/><ellipse cx="40" cy="78" rx="22" ry="17" fill="#f7f0f5"/><path d="M25 73q-15 5-12 18m42-18q15 5 12 18" fill="none" stroke="#f7f0f5" stroke-width="11" stroke-linecap="round"/><ellipse cx="29" cy="92" rx="11" ry="6" fill="#f7f0f5"/><ellipse cx="51" cy="92" rx="11" ry="6" fill="#f7f0f5"/></g></svg></div>
+</section>
+<section class="wrap section reveal" id="saath"><div class="head"><p class="eyebrow">Aik dil se doosray dil tak</p><h2>Main aap ke saath hoon 🤍</h2><p>Aap ke dil ko jo bhi mehsoos ho raha hai, us ke liye yahan narmi aur jagah hai.</p></div><div class="cards">
+<article class="card"><i>🫶</i><p id="supportName">Main aap ke saath hoon, Piyaari—har pal, har dard mein.</p></article><article class="card"><i>🌧️</i><p>Mujhe pata hai aap ko dard ho raha hai. Udaas hona bilkul theek hai.</p></article><article class="card"><i>🧸</i><p>Rona aaye to ro lijiye. Main yahin aap ke saath hoon.</p></article><article class="card"><i>🐱</i><p>Aap akeli nahi hain—jab aap chahein, main paas hoon.</p></article><article class="card"><i>☁️</i><p>Aaj mazboot banne ki zaroorat nahi. Bas aaram kijiye, pookie.</p></article><article class="card"><i>💗</i><p>Aap ki har feeling aham hai. Main use pyaar se sununga.</p></article>
+</div></section>
+<section class="wrap section reveal"><div class="head"><p class="eyebrow">Mere waaday aap se</p><h2>Narmi se, dil se 💌</h2><p>Har waaday par tap kijiye—har dafa aik chhota sa dil khilay ga.</p></div><div class="promise-box"><div class="promise-list">
+<button class="promise" aria-pressed="false"><span class="check"></span><span class="promise-label">Main aap ke saath rahunga</span><span class="ph">♥</span></button><button class="promise" aria-pressed="false"><span class="check"></span><span class="promise-label">Main har roz aap ko aur pyaar dunga</span><span class="ph">♥</span></button><button class="promise" aria-pressed="false"><span class="check"></span><span class="promise-label">Main aap ka khayal rakhunga</span><span class="ph">♥</span></button><button class="promise" aria-pressed="false"><span class="check"></span><span class="promise-label">Main narmi se baat karunga</span><span class="ph">♥</span></button><button class="promise" aria-pressed="false"><span class="check"></span><span class="promise-label">Main aap ki baat tawajju se sununga</span><span class="ph">♥</span></button><button class="promise" aria-pressed="false"><span class="check"></span><span class="promise-label">Aap ko jab chahiye, main hug dunga</span><span class="ph">♥</span></button>
+</div></div></section>
+<section class="wrap section reveal" id="teddy"><div class="head"><p class="eyebrow">Teddy ka pyaar bhara corner</p><h2>Aap ke liye aik garm si jhappi 🧸</h2><p>Teddy ke saath aik hug ya flying kiss chuniye. Aap ki marzi sab se pyaari hai.</p></div><div class="teddy-panel">
+<div class="teddy-stage"><svg class="bear float" id="bear" viewBox="0 0 300 330" role="img" aria-label="Pink teddy bear, is par paanch dafa tap karke surprise dekhiye"><ellipse cx="150" cy="310" rx="100" ry="13" fill="#c7aeca" opacity=".34"/><g class="body"><ellipse cx="150" cy="221" rx="92" ry="98" fill="#df829e"/><ellipse cx="150" cy="224" rx="54" ry="58" fill="#f4c6d0"/><ellipse cx="103" cy="306" rx="37" ry="21" fill="#cb6886"/><ellipse cx="197" cy="306" rx="37" ry="21" fill="#cb6886"/></g><g class="arm left"><path d="M81 183q-44-33-55-2-8 28 40 48" fill="none" stroke="#df829e" stroke-width="33" stroke-linecap="round"/></g><g class="arm right"><path d="M219 183q44-33 55-2 8 28-40 48" fill="none" stroke="#df829e" stroke-width="33" stroke-linecap="round"/></g><g class="head"><circle cx="99" cy="78" r="43" fill="#e990aa"/><circle cx="201" cy="78" r="43" fill="#e990aa"/><circle cx="99" cy="78" r="23" fill="#f5c5d0"/><circle cx="201" cy="78" r="23" fill="#f5c5d0"/><ellipse cx="150" cy="132" rx="83" ry="75" fill="#eca0b3"/><g class="blink"><ellipse cx="120" cy="124" rx="5.5" ry="7" fill="#634653"/><ellipse cx="180" cy="124" rx="5.5" ry="7" fill="#634653"/></g><ellipse cx="150" cy="146" rx="20" ry="15" fill="#fff0f2"/><path d="m144 142 6-5 6 5-6 6zM150 148v7m0 0q-7 7-14 0m14 0q7 7 14 0" fill="none" stroke="#a95770" stroke-width="2.3" stroke-linecap="round"/><ellipse class="blush" cx="103" cy="153" rx="12" ry="6.5" fill="#f08ba5"/><ellipse class="blush" cx="197" cy="153" rx="12" ry="6.5" fill="#f08ba5"/></g></svg></div>
+<div class="teddy-copy"><p class="eyebrow">Aap ka pookie teddy</p><h2>Chhota sa hug, bohat saara pyaar</h2><p>Jab dil chahe, in mein se koi button chuniye. Teddy apni poori narmi se aap ko pyaar bhejega. 💞</p><div class="teddy-buttons"><button class="btn primary" id="hugButton" type="button">Hug 🤗</button><button class="btn soft" id="kissButton" type="button">Kiss 😘</button></div><p class="message" id="teddyMessage" aria-live="polite">Meri pyaari <span class="yourName">Piyaari</span>, aap ke liye sab se garm jhappi—main aap ke saath hoon. 🤍</p><p class="hint">Psst... teddy par paanch dafa tap karke chhota surprise dekhiye ✨</p></div></div></section>
+<section class="wrap section reveal" id="mood"><div class="mood-panel"><div><p class="eyebrow">Aap ka dil aaj kaisa hai?</p><h2>Jab aap udaas hon... 🌷</h2><p class="mood-copy">Aik feeling chuniye. Main us ke saath narmi se yahin rahunga—bina kisi jaldi ke.</p><div class="choices" role="group" aria-label="Apna mood chuniye">
+<button class="choice" aria-pressed="false" data-message="Aap ko dard ho raha hai, mujhe afsos hai. Aaram se let jaiye, thora paani pi lijiye—main aap ke saath hoon. 💧">Dard ho raha hai 😣</button><button class="choice" aria-pressed="false" data-message="Udaas hona bilkul theek hai. Aap chahein to bas aaram karein; main pyaar se aap ke paas hoon. 🥺">Udaas hoon 🥺</button><button class="choice" aria-pressed="false" data-message="Aap akeli nahi hain. Apna takiya galay se laga lijiye aur yaad rakhiye—mera dil aap ke paas hai. 🐱">Akela feel ho raha hai 💔</button><button class="choice" aria-pressed="false" data-message="Aansu aa rahe hain to ro lijiye, meri jaan. Saans aahista lijiye; main aap ko bina sawaal ke sununga. 😭">Rona aa raha hai 😭</button><button class="choice" aria-pressed="false" data-message="Aap ko jitna pyaar chahiye, utna hi bhej raha hoon. Aik narm si jhappi aur bohat saara pyaar. 🥹">Bas pyaar chahiye 🥹</button></div><p class="response" id="moodResponse" aria-live="polite">Aap jo mehsoos kar rahi hain, woh aham hai. Main aap ke saath hoon. 🤍</p><div class="breath-row"><span class="heart" id="breathHeart" aria-hidden="true">♥</span><span class="breath-label" id="breathLabel">Aik chhota sa saans wala break?</span><button class="btn soft" id="breathButton" type="button">Mere saath saans lijiye</button></div></div>
+<div aria-hidden="true"><svg viewBox="0 0 300 250"><ellipse cx="150" cy="225" rx="105" ry="11" fill="#cab8d5" opacity=".45"/><circle cx="105" cy="66" r="29" fill="#e990aa"/><circle cx="195" cy="66" r="29" fill="#e990aa"/><circle cx="105" cy="66" r="15" fill="#f5c5d0"/><circle cx="195" cy="66" r="15" fill="#f5c5d0"/><ellipse cx="150" cy="104" rx="68" ry="61" fill="#eca0b3"/><ellipse cx="150" cy="179" rx="78" ry="58" fill="#df829e"/><ellipse cx="150" cy="175" rx="43" ry="34" fill="#f4c6d0"/><path d="M95 153q-33-28-42-4-6 24 32 40m130-40q33-28 42-4 6 24-32 40" fill="none" stroke="#df829e" stroke-width="25" stroke-linecap="round"/><ellipse cx="126" cy="104" rx="4.5" ry="6" fill="#654753"/><ellipse cx="174" cy="104" rx="4.5" ry="6" fill="#654753"/><ellipse cx="150" cy="121" rx="16" ry="12" fill="#fff0f2"/><path d="m145 118 5-4 5 4-5 5zM150 123v5m0 0q-5 5-11 0m11 0q5 5 11 0" fill="none" stroke="#a95770" stroke-width="2"/></svg></div></div></section>
+<section class="wrap section reveal"><div class="head"><p class="eyebrow">Aap ke liye chhoti si chitthi</p><h2>Pyaar ka note jar 🫙</h2><p>Jar kholiye—shayad aaj aap ko woh baat sunni ho jo dil ko halka kar de.</p></div><div class="jar-card">
+<svg class="jar" viewBox="0 0 180 200" role="img" aria-label="Chitthiyon se bhara pyaara gulabi jar"><ellipse cx="90" cy="188" rx="59" ry="8" fill="#d3bfd3" opacity=".45"/><path d="M56 45h68l9 18v91c0 14-10 23-24 23H71c-14 0-24-9-24-23V63z" fill="#ffffffa6" stroke="#e6a9bb" stroke-width="4"/><path d="M54 45h72v15H54z" fill="#eaa0b5"/><path d="M62 38h56v9H62z" fill="#d77d99"/><path d="M60 102c11-10 20 10 31 0s19 10 30 0 14 3 14 3v35c-12 10-21-9-32 0s-20-10-31 0-12-3-12-3z" fill="#f8dce5"/><path d="M75 112h38m-38 10h28" stroke="#db8da7" stroke-width="3" stroke-linecap="round"/><path d="M90 78c0-8 6-14 14-14 5 0 9 2 12 7 3-5 7-7 12-7 8 0 14 6 14 14 0 13-26 29-26 29S90 91 90 78Z" transform="translate(-24 -3) scale(.72)" fill="#e27f9e"/></svg>
+<div class="jar-copy"><div class="note" id="loveNote" aria-live="polite">Aap meri favourite insaan hain, <span class="yourName">Piyaari</span>. ♡</div><p>Har note <span id="myNameNote">Ahmed</span> ki taraf se, sirf aap ke liye. 💌</p><button class="jar-button" id="noteButton" type="button">Aik aur pyaara note kholiye ✨</button></div></div></section>
+<section class="wrap ending reveal" id="ending"><div class="ending-inner"><p class="eyebrow">Aakhri paighaam, magar pyaar hamesha</p><h2>Kaash yeh phool abhi aap ko de pata 🌷</h2>
+<svg class="gift" viewBox="0 0 280 210" role="img" aria-label="Ahmed ka chhota sa kirdar Piyaari ko phool de raha hai"><ellipse cx="140" cy="195" rx="97" ry="9" fill="#713c68" opacity=".2"/><g class="bloom"><path d="M201 132Q207 99 194 68" fill="none" stroke="#5caa79" stroke-width="5"/><path d="M201 105q-22-18-28 1 13 13 28-1m-4-17q21-19 27-2-14 13-27 2" fill="#79c68b"/><circle cx="194" cy="59" r="11" fill="#ffd56f"/><circle cx="194" cy="44" r="9" fill="#ffc0d2"/><circle cx="208" cy="54" r="9" fill="#ffc0d2"/><circle cx="203" cy="70" r="9" fill="#ffc0d2"/><circle cx="184" cy="70" r="9" fill="#ffc0d2"/><circle cx="180" cy="54" r="9" fill="#ffc0d2"/></g><g class="bloom"><path d="M184 137Q174 104 176 83" fill="none" stroke="#5caa79" stroke-width="5"/><circle cx="176" cy="76" r="10" fill="#ffe184"/><circle cx="176" cy="62" r="8" fill="#f5a8c0"/><circle cx="189" cy="72" r="8" fill="#f5a8c0"/><circle cx="184" cy="86" r="8" fill="#f5a8c0"/><circle cx="169" cy="87" r="8" fill="#f5a8c0"/><circle cx="163" cy="72" r="8" fill="#f5a8c0"/></g><g class="bloom"><path d="M211 133Q224 105 228 86" fill="none" stroke="#5caa79" stroke-width="5"/><circle cx="230" cy="78" r="10" fill="#ffe184"/><circle cx="230" cy="64" r="8" fill="#cdb7f4"/><circle cx="244" cy="74" r="8" fill="#cdb7f4"/><circle cx="238" cy="88" r="8" fill="#cdb7f4"/><circle cx="223" cy="89" r="8" fill="#cdb7f4"/><circle cx="217" cy="74" r="8" fill="#cdb7f4"/></g><path d="M171 131h58l-7 40h-44z" fill="#f6c0d1"/><path d="M171 131q29 13 58 0" fill="none" stroke="#d987a3" stroke-width="4"/><path d="M197 132q-13-17-23-8 3 14 23 8m3 0q14-18 24-8-4 14-24 8" fill="#ed8eaa"/><circle cx="199" cy="130" r="5" fill="#ffe5eb"/><circle cx="88" cy="74" r="29" fill="#d59a77"/><path d="M60 70q5-37 42-26 15 6 14 24-8-11-20-12-14 15-36 14" fill="#533e4b"/><ellipse cx="88" cy="145" rx="39" ry="43" fill="#8e769e"/><path d="M72 99q15 13 32 0l18 30q-34 14-69 0z" fill="#fff1ef"/><ellipse cx="79" cy="75" rx="3" ry="4" fill="#553b45"/><ellipse cx="98" cy="75" rx="3" ry="4" fill="#553b45"/><path d="M84 87q5 5 10 0" fill="none" stroke="#99536b" stroke-width="2"/><path d="M111 127q26-13 52 4" fill="none" stroke="#d59a77" stroke-width="10" stroke-linecap="round"/><circle cx="164" cy="131" r="7" fill="#d59a77"/><path d="M69 179v11m39-11v11" stroke="#604d65" stroke-width="9" stroke-linecap="round"/></svg>
+<p class="type-line" id="typeLine" aria-live="polite"></p><p class="love-line">I love you <span id="yourNameLove">Piyaari</span> <span aria-hidden="true">❤️</span></p><p class="closing" id="closing">Jaldi theek ho jaiye, meri pookie <span class="yourName">Piyaari</span>. Main hamesha aap ke saath hoon. Aap meri zindagi ka bohat khoobsurat hissa hain. Aap ki muskurahat, aap ka sukoon aur aap ka dil mere liye bohat qeemti hain. Always yours, <span id="myNameEnd">Ahmed</span> 💗</p><button class="btn soft" id="finalHug" type="button">Aik aur hug ke liye tap kijiye 🤗</button></div></section>
+<section class="wrap kiss-finale reveal"><p class="eyebrow">Aik aakhri pyaara sa moment</p><svg class="kiss-teddy float" id="kissTeddy" viewBox="0 0 160 150" role="img" aria-label="Pink teddy aap ko pyaara sa kiss bhej raha hai"><circle cx="43" cy="35" r="27" fill="#e990aa"/><circle cx="117" cy="35" r="27" fill="#e990aa"/><circle cx="43" cy="35" r="14" fill="#f5c5d0"/><circle cx="117" cy="35" r="14" fill="#f5c5d0"/><ellipse cx="80" cy="76" rx="64" ry="53" fill="#eca0b3"/><g class="blink"><ellipse cx="58" cy="72" rx="4" ry="5.5" fill="#634653"/><ellipse cx="102" cy="72" rx="4" ry="5.5" fill="#634653"/></g><ellipse class="blush" cx="40" cy="86" rx="12" ry="6" fill="#ef7895"/><ellipse class="blush" cx="120" cy="86" rx="12" ry="6" fill="#ef7895"/><ellipse cx="80" cy="88" rx="18" ry="14" fill="#fff0f2"/><path d="m75 85 5-4 5 4-5 5zM80 90q-6 7-12 0m12 0q6 7 12 0" fill="none" stroke="#a95770" stroke-width="2"/></svg><h2>Is se bhi zyada pyaar se main aap ko kiss karunga, <span class="yourName">Piyaari</span> 💋</h2><p>Aap ki marzi ho to teddy ka yeh chhota sa flying kiss aap ke liye. Is mein bohat saara pyaar hai. 💗</p><button class="btn primary" id="finalKiss" type="button">Teddy se kiss lijiye 😘</button><p class="kiss-message" id="kissMessage" aria-live="polite">Aap ke liye aik pyaara sa mwaah! ♡</p></section>
+</main>
+<footer class="footer">Ahmed ki taraf se aik virtual hug aur bohat saara pyaar <span>♥</span></footer><div class="badge"><span>♡</span> Main aap ke saath hoon <span>🤍</span></div><div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+const YOUR_NAME="Piyaari";
+const MY_NAME="Ahmed";
+document.getElementById("yourNameHero").textContent=YOUR_NAME;
+document.getElementById("supportName").textContent="Main aap ke saath hoon, "+YOUR_NAME+"—har pal, har dard mein.";
+document.getElementById("yourNameLove").textContent=YOUR_NAME;
+document.getElementById("myNameNote").textContent=MY_NAME;
+document.getElementById("myNameEnd").textContent=MY_NAME;
+document.querySelectorAll(".yourName").forEach(function(n){n.textContent=YOUR_NAME});
+document.title="Aik pyaari si jhappi — "+MY_NAME+" ki taraf se";
+const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const toast=document.getElementById("toast");let toastTimer;
+function showToast(message){toast.textContent=message;toast.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(function(){toast.classList.remove("show")},2700)}
+function heartsAt(x,y,count){if(reduced)return;const symbols=["♡","♥","✿","✨"];for(let i=0;i<count;i++){const n=document.createElement("span");n.className="tiny-heart";n.textContent=symbols[Math.floor(Math.random()*symbols.length)];n.style.left=(x+(Math.random()-.5)*70)+"px";n.style.top=(y+(Math.random()-.5)*26)+"px";n.style.color=["#e57e9b","#d88db0","#e3a0a4"][i%3];document.body.appendChild(n);setTimeout(function(){n.remove()},1100)}}
+document.addEventListener("pointerdown",function(e){if(e.target.closest("button,a"))return;heartsAt(e.clientX,e.clientY,1)},{passive:true});
+if(!reduced){["♡","✿","♥","✧","♡","✿","♥"].forEach(function(s,i){const n=document.createElement("span");n.className="floaty";n.textContent=s;n.style.left=(6+i*14)+"%";n.style.fontSize=(12+i%3*5)+"px";n.style.animationDuration=(17+i*2)+"s";n.style.animationDelay=(-i*2.8)+"s";document.getElementById("floaties").appendChild(n)})}
+const progress=document.getElementById("progressBar");function progressUpdate(){const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max?Math.min(100,Math.max(0,scrollY/max*100)):0)+"%"}addEventListener("scroll",progressUpdate,{passive:true});progressUpdate();
+const revealItems=document.querySelectorAll(".reveal");if("IntersectionObserver"in window&&!reduced){const io=new IntersectionObserver(function(entries,obs){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add("visible");obs.unobserve(e.target)}})},{threshold:.12});revealItems.forEach(function(e){io.observe(e)})}else revealItems.forEach(function(e){e.classList.add("visible")});
+document.querySelectorAll(".promise").forEach(function(b){b.addEventListener("click",function(){const on=b.getAttribute("aria-pressed")!=="true";b.setAttribute("aria-pressed",String(on));if(on){const r=b.getBoundingClientRect();heartsAt(r.left+r.width*.85,r.top+r.height/2,2)}})});
+const bear=document.getElementById("bear");let taps=0;bear.addEventListener("click",function(e){taps++;heartsAt(e.clientX,e.clientY,2);if(taps===5)showToast("Aap meri poori duniya hain 🥹")});
+function teddyMoment(kind){bear.classList.remove("hug","kiss");void bear.offsetWidth;bear.classList.add(kind);document.getElementById("teddyMessage").textContent=kind==="hug"?"Meri pyaari "+YOUR_NAME+", aap ke liye sab se garm jhappi—main aap ke saath hoon. 🤗":"Mwaah! Meri sab se pyaari "+YOUR_NAME+" ke liye bohat saari kisses. 😘";const r=bear.getBoundingClientRect();heartsAt(r.left+r.width/2,r.top+r.height*.4,kind==="hug"?7:5);setTimeout(function(){bear.classList.remove(kind)},1150);if(kind==="kiss")document.getElementById("kissMessage").textContent="Mwaah! Yeh pyaara sa kiss sirf aap ke liye hai, "+YOUR_NAME+" ♡"}
+document.getElementById("hugButton").addEventListener("click",function(){teddyMoment("hug")});document.getElementById("kissButton").addEventListener("click",function(){teddyMoment("kiss")});
+document.getElementById("finalHug").addEventListener("click",function(e){heartsAt(e.clientX,e.clientY,15);showToast("Jaldi theek ho jaiye meri pookie "+YOUR_NAME+". Main hamesha aap ke saath hoon. 🤍")});
+document.querySelectorAll(".choice").forEach(function(b){b.addEventListener("click",function(){document.querySelectorAll(".choice").forEach(function(x){x.setAttribute("aria-pressed","false")});b.setAttribute("aria-pressed","true");document.getElementById("moodResponse").textContent=b.dataset.message})});
+let breathing=false;document.getElementById("breathButton").addEventListener("click",function(){if(breathing)return;const b=this,h=document.getElementById("breathHeart"),label=document.getElementById("breathLabel");breathing=true;b.disabled=true;if(reduced){label.textContent="Shukriya. Aap ne apne liye aik narm sa lamha nikala. 🤍";b.disabled=false;breathing=false;return}label.textContent="Aahista saans andar... aur ab dheere se bahar. 🤍";h.classList.add("breathe");setTimeout(function(){h.classList.remove("breathe");label.textContent="Shukriya. Aap ne apne liye aik narm sa lamha nikala. 🤍";b.disabled=false;breathing=false},12200)});
+const notes=["Aap meri favourite insaan hain, "+YOUR_NAME+". ♡","Aap bohat qeemti hain, aur mujhe aap par fakhar hai. ✨","Aap ki muskurahat mere din ko pyaara bana deti hai. 🌸","Main aap ke saath hoon—aahista, narmi se, hamesha. 🤍","Aap jitna pyaar deti hain, us se bhi zyada pyaar aap ke liye hai. 💗","Aaj aap ka kaam sirf apna khayal rakhna hai, meri pookie. 🧸","Aap ka dil bohat khoobsurat hai. Use aaram aur pyaar milna chahiye. 💌","Duniya ki sab se pyaari jhappi aap ke naam. 🤗","Har din perfect na ho, phir bhi aap mere liye bohat khaas hain. 🌷"];let lastNote=-1;
+document.getElementById("noteButton").addEventListener("click",function(e){let i=Math.floor(Math.random()*notes.length);if(i===lastNote)i=(i+1)%notes.length;lastNote=i;document.getElementById("loveNote").textContent=notes[i];heartsAt(e.clientX,e.clientY,3)});
+document.getElementById("finalKiss").addEventListener("click",function(e){const t=document.getElementById("kissTeddy");t.classList.add("kissing");document.getElementById("kissMessage").textContent="Mwaah! Is se bhi zyada pyaar se main aap ko kiss karunga, "+YOUR_NAME+". I love you bohat saara. 💋❤️";heartsAt(e.clientX,e.clientY,12);setTimeout(function(){t.classList.remove("kissing")},1300)});
+document.getElementById("kissTeddy").addEventListener("click",function(e){heartsAt(e.clientX,e.clientY,4)});
+const line=document.getElementById("typeLine"),fullLine="Main yahin aap ke paas baitha hoon... aap ke saath hoon... yeh phool aap ke liye hain, meri "+YOUR_NAME+".";line.textContent="";
+function typeLine(){if(reduced){line.textContent=fullLine;return}let i=0;const timer=setInterval(function(){line.textContent=fullLine.slice(0,++i);if(i>=fullLine.length)clearInterval(timer)},38)}
+if("IntersectionObserver"in window&&!reduced){const typer=new IntersectionObserver(function(entries,obs){if(entries.some(function(e){return e.isIntersecting})){typeLine();obs.disconnect()}},{threshold:.25});typer.observe(document.getElementById("ending"))}else typeLine();
+let audio=null,musicTimer=null,musicIndex=0;const music=document.getElementById("musicToggle"),melody=[523.25,659.25,783.99,659.25,587.33,698.46,783.99,698.46];
+function softNote(freq){if(!audio)return;const osc=audio.createOscillator(),gain=audio.createGain();osc.type="sine";osc.frequency.value=freq;gain.gain.setValueAtTime(.0001,audio.currentTime);gain.gain.exponentialRampToValueAtTime(.022,audio.currentTime+.08);gain.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+1.4);osc.connect(gain);gain.connect(audio.destination);osc.start();osc.stop(audio.currentTime+1.45)}
+music.addEventListener("click",async function(){if(musicTimer){clearInterval(musicTimer);musicTimer=null;if(audio){await audio.close();audio=null}music.setAttribute("aria-pressed","false");music.textContent="♫ Music: off";return}const AudioClass=window.AudioContext||window.webkitAudioContext;if(!AudioClass){showToast("Is browser mein music available nahi, lekin pyaar yahin hai. ♡");return}audio=new AudioClass();await audio.resume();softNote(melody[musicIndex++%melody.length]);musicTimer=setInterval(function(){softNote(melody[musicIndex++%melody.length])},1750);music.setAttribute("aria-pressed","true");music.textContent="♫ Music: on"});
+</script>
 </body>
 </html>
